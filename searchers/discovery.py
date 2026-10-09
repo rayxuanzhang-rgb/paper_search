@@ -1,5 +1,7 @@
 """Loss-aware arXiv collection: paging, complete abstracts, per-query cursors."""
 import asyncio
+import hashlib
+from html.parser import HTMLParser
 from datetime import datetime, timedelta, timezone
 import re
 import xml.etree.ElementTree as ET
@@ -97,6 +99,7 @@ async def collect_queries(client, queries, state, *, started=None, overlap_days=
     for name, query in queries.items():
         previous = cursors.get(name)
         since = timestamp(previous) - timedelta(days=overlap_days) if previous else started - timedelta(days=initial_days)
+        since = since.astimezone(timezone.utc).replace(hour=0, minute=0, second=0, microsecond=0)
         try:
             papers, complete = await collect_query(client, query, since, max_pages=max_pages, delay=delay)
             for p in papers:
@@ -114,17 +117,104 @@ async def collect_queries(client, queries, state, *, started=None, overlap_days=
             if isinstance(exc, httpx.HTTPStatusError):
                 health[name]["http_status"] = exc.response.status_code
         print(f"[Collect] {name}: {health[name]['status']} ({health[name].get('count', 0)})", flush=True)
-    return list(merged.values()), {"query_success": cursors, "last_attempt": started.isoformat()}, health
+    return list(merged.values()), {**state, "query_success": cursors, "last_attempt": started.isoformat()}, health
+
+
+async def collect_backfill(client, queries, state, *, started, days=30, windows=1, max_pages=20, delay=3.5):
+    """Resume bounded submission-date windows, independently of incremental cursors."""
+    histories = dict(state.get("backfill", {}))
+    found, health = [], {}
+    end = started.astimezone(timezone.utc).replace(hour=0, minute=0, second=0, microsecond=0) + timedelta(days=1)
+    for name, query in queries.items():
+        signature = hashlib.sha256(query.encode()).hexdigest()
+        record = dict(histories.get(name, {}))
+        if record.get("query_hash") != signature or record.get("days") != days:
+            record = {"query_hash": signature, "days": days, "start": (end - timedelta(days=days)).isoformat(),
+                      "end": end.isoformat(), "next_end": end.isoformat()}
+        lower, cursor = timestamp(record["start"]), timestamp(record["next_end"])
+        h = {"status": "ok", "count": 0, "windows_completed": 0, "start": record["start"], "end": record["end"]}
+        for _ in range(windows):
+            if cursor <= lower:
+                break
+            start = max(lower, cursor - timedelta(days=7))
+            bounded = f'({query}) AND submittedDate:[{start:%Y%m%d%H%M} TO {cursor - timedelta(minutes=1):%Y%m%d%H%M}]'
+            try:
+                papers, complete = await collect_query(client, bounded, start, max_pages=max_pages, delay=delay)
+                found.extend(dict(p, hit_dimensions=[name]) for p in papers)
+                h["count"] += len(papers)
+                if not complete:
+                    h["status"] = "truncated"
+                    break
+                cursor = start
+                record["next_end"] = cursor.isoformat()
+                h["windows_completed"] += 1
+            except (httpx.HTTPError, ET.ParseError, ValueError, RuntimeError) as exc:
+                h.update(status="error", error_type=type(exc).__name__)
+                break
+        record["complete"] = cursor <= lower
+        histories[name] = record
+        health[name] = {**h, "complete": record["complete"], "next_end": record["next_end"]}
+        print(f"[Backfill] {name}: {h['status']} ({h['count']}); complete={record['complete']}", flush=True)
+    return found, {**state, "backfill": histories}, health
+
+
+class AnnouncementParser(HTMLParser):
+    def __init__(self):
+        super().__init__()
+        self.ids, self.text = set(), []
+
+    def handle_starttag(self, tag, attrs):
+        href = dict(attrs).get("href", "")
+        if tag == "a" and re.fullmatch(r"/abs/\d{4}\.\d{4,5}", href):
+            self.ids.add(href.removeprefix("/abs/"))
+
+    def handle_data(self, data):
+        self.text.append(data)
+
+
+async def reconcile_announcements(client, existing, *, delay=3.5):
+    """Reconcile the complete official recent cs.RO list, irrespective of submission age."""
+    health = {"status": "error", "scope": "arxiv cs.RO recent announcement list"}
+    found = []
+    try:
+        response = await client.get("https://arxiv.org/list/cs.RO/recent", params={"skip": 0, "show": 2000})
+        response.raise_for_status()
+        parser = AnnouncementParser()
+        parser.feed(response.text)
+        total = re.search(r"Total of\s+([\d,]+)\s+entries", " ".join(parser.text))
+        if not total or len(parser.ids) != int(total[1].replace(",", "")):
+            raise ValueError("Announcement list incomplete or unrecognized")
+        # Re-fetch incomplete legacy metadata too; a bare ID is not a usable candidate.
+        present = {p["id"] for p in existing if p.get("version") and p.get("updated") and p.get("abstract")}
+        missing = sorted(parser.ids - present)
+        health.update(reference_count=len(parser.ids), missing_before=len(missing))
+        for offset in range(0, len(missing), 50):
+            ids = missing[offset:offset + 50]
+            papers, _ = await request_feed(client, {"id_list": ",".join(ids), "max_results": len(ids)}, delay=delay)
+            found.extend(dict(p, hit_dimensions=["robotics_all"]) for p in papers if p["id"] in ids)
+            if {p["id"] for p in papers} != set(ids):
+                raise ValueError("Missing announcement metadata")
+        health["status"] = "ok"
+    except (httpx.HTTPError, ET.ParseError, ValueError, RuntimeError) as exc:
+        health["error_type"] = type(exc).__name__
+    health["recovered"] = len({p["id"] for p in found})
+    if "missing_before" in health:
+        health["remaining"] = health["missing_before"] - health["recovered"]
+    return found, health
 
 
 def merge_catalog(existing, incoming, discovered_at):
     result = {p["id"]: dict(p) for p in existing}
     for paper in incoming:
         old = result.get(paper["id"], {})
+        dimensions = sorted(set(old.get("hit_dimensions") or []) | set(paper.get("hit_dimensions") or []))
+        if old.get("updated") and paper.get("updated") and timestamp(old["updated"]) > timestamp(paper["updated"]):
+            result[paper["id"]] = {**old, "hit_dimensions": dimensions}
+            continue
         merged = dict(old)
         merged.update(paper)
         merged["date_found"] = old.get("date_found") or paper.get("date_found") or discovered_at[:10]
-        merged["hit_dimensions"] = sorted(set(old.get("hit_dimensions", [])) | set(paper.get("hit_dimensions", [])))
+        merged["hit_dimensions"] = dimensions
         if not old or any(old.get(k) != paper.get(k) for k in ("version", "abstract", "title")):
             merged["review_status"] = "pending"
             merged["review_changed_at"] = discovered_at
