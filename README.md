@@ -32,6 +32,7 @@ python review.py prepare --backlog
 
 ```sh
 python review.py accept PACKET.json RESULT.json --output .review/batch.html
+python review.py watch
 python review.py compose SELECTION.json --output .review/reports/today.html
 python review.py feedback PAPER_ID useful --reason "可借鉴的数据配对方式"
 ```
@@ -40,7 +41,7 @@ prepare 默认导出最近 7 天未评审候选；`--backlog` 不受日期限制
 
 ## 检索与故障恢复
 
-`discovery_queries.json` 包含 cs.RO 全量方向兜底与人类数据、适应、模型、部署、资源查询。显式布尔检索、按更新时间分页、完整摘要、跨查询去重；新版本重新进入待审。每个查询单独记录成功进度，重叠回看 3 天。初次回看 7 天，可用 `python collect.py --days 30` 扩大首次窗口。
+`discovery_queries.json` 包含 cs.RO 全量方向兜底与人类数据、适应、模型、部署、资源查询。显式布尔检索、按更新时间分页、完整摘要、跨查询去重；新版本重新进入待审。每个查询单独记录成功进度，重叠回看 3 天。初次增量回看 7 天并对齐 UTC 零点；另有独立的最近 30 天历史补采，每次推进一个七天窗口。可用 `python collect.py --backfill-windows 5` 尽快完成首次补采。每次对照官方 cs.RO recent 公告列表补齐缺项；健康状态单独报告历史进度和公告对账范围。
 
 达到分页上限、API 报错或空页异常时，保留可用结果，报告失败且不推进该查询进度。GitHub Actions 会显示失败而不是生成假的“今日无更新”。默认 20 页/查询，触顶需增大 `--max-pages`。arXiv API 可能限流或延迟，非论文类官方发布由 Codex 补查；本系统不保证覆盖整个行业。
 

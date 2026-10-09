@@ -7,7 +7,7 @@ import argparse
 from datetime import datetime, timedelta, timezone
 from pathlib import Path
 
-from processing.codex_review import make_packet, read_json, store_review, write_json, now, validate_review
+from processing.codex_review import make_packet, read_json, store_review, write_json, now, validate_review, industry_watch
 from output.review_html import render_review
 
 ROOT = Path(__file__).resolve().parent
@@ -40,6 +40,11 @@ def main():
     feedback.add_argument("id")
     feedback.add_argument("action", choices=["useful", "try", "not_useful", "already_known"])
     feedback.add_argument("--reason", default="")
+    watch = sub.add_parser("watch", help="Export all high-industry-value papers awaiting a second look")
+    watch.add_argument("--catalog", type=Path, default=ROOT / "data/catalog.json")
+    watch.add_argument("--profile", type=Path, default=ROOT / ".review/profile.json")
+    watch.add_argument("--store", type=Path, default=ROOT / ".review/reviews.json")
+    watch.add_argument("--output", type=Path, default=ROOT / ".review/industry-watch.json")
     args = parser.parse_args()
     if args.command == "prepare":
         if args.days < 1 or not 1 <= args.batch_size <= 100:
@@ -109,6 +114,12 @@ def main():
         render_review(packet, result, args.output)
         write_json(args.output.with_suffix(".json"), {"packet": packet, "result": result})
         print(f"Composed {len(result['highlight_ids'])} highlights across {len(selected)} batches: {args.output}")
+    elif args.command == "watch":
+        profile = read_json(args.profile if args.profile.exists() else ROOT / "review_profile.example.json")
+        store = read_json(args.store) if args.store.exists() else {"runs": []}
+        queue = industry_watch(read_json(args.catalog)["papers"], profile, store)
+        write_json(args.output, queue)
+        print(f"Industry watch: {queue['total']} candidates; {args.output}")
     else:
         path = ROOT / ".review/feedback.json"
         data = read_json(path) if path.exists() else {"events": []}
