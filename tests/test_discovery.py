@@ -4,7 +4,7 @@ from unittest.mock import AsyncMock, patch
 
 import httpx
 
-from searchers.discovery import collect_query, collect_queries, merge_catalog, parse_feed
+from searchers.discovery import collect_query, collect_queries, merge_catalog, parse_feed, collect_backfill, reconcile_announcements
 
 
 def paper(i, date="2026-10-08T00:00:00Z"):
@@ -12,6 +12,59 @@ def paper(i, date="2026-10-08T00:00:00Z"):
 
 
 class DiscoveryTests(unittest.IsolatedAsyncioTestCase):
+    async def test_initial_window_includes_early_hours_and_preserves_history(self):
+        with patch("searchers.discovery.collect_query", new=AsyncMock(return_value=([], True))) as request:
+            _, state, _ = await collect_queries(None, {"a": "x"}, {"backfill": {"saved": True}},
+                started=datetime(2026, 10, 9, 5, 51, tzinfo=timezone.utc))
+        self.assertEqual(request.call_args.args[2], datetime(2026, 10, 2, tzinfo=timezone.utc))
+        self.assertEqual(state["backfill"], {"saved": True})
+
+    async def test_backfill_resume_failure_and_query_change(self):
+        started = datetime(2026, 10, 9, tzinfo=timezone.utc)
+        with patch("searchers.discovery.collect_query", new=AsyncMock(side_effect=[([paper(1)], True), ([], False)])):
+            found, state, health = await collect_backfill(None, {"a": "cat:cs.RO"}, {}, started=started, windows=2)
+        self.assertEqual(state["backfill"]["a"]["next_end"], "2026-10-03T00:00:00+00:00")
+        self.assertFalse(health["a"]["complete"])
+        with patch("searchers.discovery.collect_query", new=AsyncMock(return_value=([], True))) as request:
+            _, resumed, health = await collect_backfill(None, {"a": "cat:cs.RO"}, state, started=started, windows=5)
+        self.assertIn("202609260000 TO 202610022359", request.call_args_list[0].args[1])
+        self.assertTrue(health["a"]["complete"])
+        with patch("searchers.discovery.collect_query", new=AsyncMock(side_effect=httpx.ConnectError("offline"))):
+            _, failed, health = await collect_backfill(None, {"a": "changed"}, resumed, started=started)
+        self.assertEqual(failed["backfill"]["a"]["next_end"], "2026-10-10T00:00:00+00:00")
+        self.assertEqual(health["a"]["status"], "error")
+
+    async def test_announcements_recover_old_submission_and_reject_partial_list(self):
+        client = AsyncMock()
+        client.get.return_value = httpx.Response(200, text='Total of 1 entries <a href ="/abs/2610.00001">abs</a>',
+                                                request=httpx.Request("GET", "https://arxiv.org"))
+        old = paper(1, "2026-09-16T00:00:00Z")
+        with patch("searchers.discovery.request_feed", new=AsyncMock(return_value=([old], 1))):
+            found, health = await reconcile_announcements(client, [])
+        self.assertEqual(found[0]["updated"], old["updated"])
+        self.assertEqual(health["remaining"], 0)
+        client.get.return_value = httpx.Response(200, text='Total of 2 entries <a href="/abs/2610.00001">abs</a>',
+                                                request=httpx.Request("GET", "https://arxiv.org"))
+        found, health = await reconcile_announcements(client, [])
+        self.assertEqual(health["status"], "error")
+
+    async def test_announcements_missing_metadata_is_failure(self):
+        client = AsyncMock()
+        client.get.return_value = httpx.Response(200, text='Total of 1 entries <a href="/abs/2610.00001">abs</a>',
+                                                request=httpx.Request("GET", "https://arxiv.org"))
+        with patch("searchers.discovery.request_feed", new=AsyncMock(return_value=([], 0))):
+            _, health = await reconcile_announcements(client, [])
+        self.assertEqual(health["status"], "error")
+        self.assertEqual(health["remaining"], 1)
+
+    def test_backfill_cannot_downgrade_a_new_revision(self):
+        new = dict(paper(1), version="v2", hit_dimensions=None, review_status="reviewed")
+        old = dict(paper(1, "2026-09-16T00:00:00Z"), hit_dimensions=["history"])
+        merged = merge_catalog([new], [old], "2026-10-09T00:00:00Z")[0]
+        self.assertEqual(merged["version"], "v2")
+        self.assertEqual(merged["review_status"], "reviewed")
+        self.assertEqual(merged["hit_dimensions"], ["history"])
+
     async def test_paging_does_not_stop_at_old_top15(self):
         pages = [(list(map(paper, range(100))), 103), (list(map(paper, range(100, 103))), 103)]
         with patch("searchers.discovery.request_feed", new=AsyncMock(side_effect=pages)) as request:

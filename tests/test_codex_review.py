@@ -4,7 +4,7 @@ import tempfile
 import unittest
 from pathlib import Path
 
-from processing.codex_review import make_packet, store_review, validate_review
+from processing.codex_review import make_packet, store_review, validate_review, industry_watch
 from output.review_html import render_review
 
 
@@ -30,6 +30,26 @@ class CodexReviewTests(unittest.TestCase):
         packet = make_packet([{"id": "x", "score": 9, "reason": "mechanical"}], self.profile, label="x")
         self.assertNotIn("score", packet["candidates"][0])
         self.assertNotIn("reason", packet["candidates"][0])
+
+    def test_watch_keeps_abstract_read_even_with_low_transfer_without_highlighting(self):
+        self.result["highlight_ids"] = []
+        review = self.result["reviews"][0]
+        review.update(transfer_value=0, evidence_level="abstract")
+        store = {"runs": [{"packet": self.packet, "result": self.result}]}
+        papers = [{"id": "2601.00001", "title": "<script>bad()</script>", "abstract": "source text"}]
+        queue = industry_watch(papers, self.profile, store)
+        self.assertEqual(queue["total"], 1)
+        self.assertEqual(queue["items"][0]["stage"], "needs_original_evidence")
+        self.assertEqual(self.result["highlight_ids"], [])
+        review.update(industry_importance=2, transfer_value=5)
+        self.assertEqual(industry_watch(papers, self.profile, store)["total"], 0)
+        review.update(industry_importance=4, evidence_level="full_text")
+        self.assertEqual(industry_watch(papers, self.profile, store)["items"][0]["stage"], "editorial_review")
+        self.result["highlight_ids"] = ["2601.00001"]
+        self.assertEqual(industry_watch(papers, self.profile, store)["total"], 0)
+        self.result["highlight_ids"] = []
+        papers[0]["abstract"] = "new revision"
+        self.assertEqual(industry_watch(papers, self.profile, store)["total"], 0)
 
     def test_missing_review_is_rejected(self):
         self.result["reviews"] = []
