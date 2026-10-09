@@ -1,36 +1,101 @@
 {
-  "at": "2026-10-09T06:00:07.249184+00:00",
+  "at": "2026-10-09T06:39:43.228707+00:00",
   "ok": true,
   "sources": {
     "robotics_all": {
       "status": "ok",
-      "count": 791,
-      "since": "2026-10-02T06:00:07.249184+00:00"
+      "count": 428,
+      "since": "2026-10-06T00:00:00+00:00"
     },
     "human_data": {
       "status": "ok",
-      "count": 83,
-      "since": "2026-10-02T06:00:07.249184+00:00"
+      "count": 43,
+      "since": "2026-10-06T00:00:00+00:00"
     },
     "adaptation": {
       "status": "ok",
-      "count": 98,
-      "since": "2026-10-02T06:00:07.249184+00:00"
+      "count": 57,
+      "since": "2026-10-06T00:00:00+00:00"
     },
     "world_action_models": {
       "status": "ok",
-      "count": 174,
-      "since": "2026-10-02T06:00:07.249184+00:00"
+      "count": 102,
+      "since": "2026-10-06T00:00:00+00:00"
     },
     "deployment": {
       "status": "ok",
-      "count": 145,
-      "since": "2026-10-02T06:00:07.249184+00:00"
+      "count": 80,
+      "since": "2026-10-06T00:00:00+00:00"
     },
     "resources": {
       "status": "ok",
-      "count": 227,
-      "since": "2026-10-02T06:00:07.249184+00:00"
+      "count": 134,
+      "since": "2026-10-06T00:00:00+00:00"
     }
+  },
+  "backfill": {
+    "robotics_all": {
+      "status": "ok",
+      "count": 2448,
+      "windows_completed": 5,
+      "start": "2026-09-10T00:00:00+00:00",
+      "end": "2026-10-10T00:00:00+00:00",
+      "complete": true,
+      "next_end": "2026-09-10T00:00:00+00:00"
+    },
+    "human_data": {
+      "status": "ok",
+      "count": 234,
+      "windows_completed": 5,
+      "start": "2026-09-10T00:00:00+00:00",
+      "end": "2026-10-10T00:00:00+00:00",
+      "complete": true,
+      "next_end": "2026-09-10T00:00:00+00:00"
+    },
+    "adaptation": {
+      "status": "ok",
+      "count": 296,
+      "windows_completed": 5,
+      "start": "2026-09-10T00:00:00+00:00",
+      "end": "2026-10-10T00:00:00+00:00",
+      "complete": true,
+      "next_end": "2026-09-10T00:00:00+00:00"
+    },
+    "world_action_models": {
+      "status": "ok",
+      "count": 494,
+      "windows_completed": 5,
+      "start": "2026-09-10T00:00:00+00:00",
+      "end": "2026-10-10T00:00:00+00:00",
+      "complete": true,
+      "next_end": "2026-09-10T00:00:00+00:00"
+    },
+    "deployment": {
+      "status": "ok",
+      "count": 393,
+      "windows_completed": 5,
+      "start": "2026-09-10T00:00:00+00:00",
+      "end": "2026-10-10T00:00:00+00:00",
+      "complete": true,
+      "next_end": "2026-09-10T00:00:00+00:00"
+    },
+    "resources": {
+      "status": "ok",
+      "count": 632,
+      "windows_completed": 5,
+      "start": "2026-09-10T00:00:00+00:00",
+      "end": "2026-10-10T00:00:00+00:00",
+      "complete": true,
+      "next_end": "2026-09-10T00:00:00+00:00"
+    }
+  },
+  "historical_complete": true,
+  "announcements": {
+    "status": "ok",
+    "scope": "arxiv cs.RO recent announcement list",
+    "reference_count": 613,
+    "missing_before": 7,
+    "recovered": 7,
+    "remaining": 0
   }
 }
