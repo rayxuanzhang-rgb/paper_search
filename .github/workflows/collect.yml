@@ -3,6 +3,12 @@ on:
   schedule:
     - cron: '17 22 * * *'
   workflow_dispatch:
+    inputs:
+      backfill_windows:
+        description: 'Historical seven-day windows per query (5 completes the initial 30 days)'
+        type: choice
+        options: ['1', '5']
+        default: '1'
 permissions:
   contents: read
 concurrency:
@@ -25,7 +31,9 @@ jobs:
       - name: Collect public metadata
         id: collect
         continue-on-error: true
-        run: python collect.py
+        env:
+          BACKFILL_WINDOWS: ${{ inputs.backfill_windows || '1' }}
+        run: python collect.py --backfill-windows "$BACKFILL_WINDOWS"
       - name: Save catalog and per-query progress
         if: always()
         run: |
