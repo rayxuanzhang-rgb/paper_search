@@ -1,0 +1,36 @@
+{
+  "at": "2026-10-09T06:00:07.249184+00:00",
+  "ok": true,
+  "sources": {
+    "robotics_all": {
+      "status": "ok",
+      "count": 791,
+      "since": "2026-10-02T06:00:07.249184+00:00"
+    },
+    "human_data": {
+      "status": "ok",
+      "count": 83,
+      "since": "2026-10-02T06:00:07.249184+00:00"
+    },
+    "adaptation": {
+      "status": "ok",
+      "count": 98,
+      "since": "2026-10-02T06:00:07.249184+00:00"
+    },
+    "world_action_models": {
+      "status": "ok",
+      "count": 174,
+      "since": "2026-10-02T06:00:07.249184+00:00"
+    },
+    "deployment": {
+      "status": "ok",
+      "count": 145,
+      "since": "2026-10-02T06:00:07.249184+00:00"
+    },
+    "resources": {
+      "status": "ok",
+      "count": 227,
+      "since": "2026-10-02T06:00:07.249184+00:00"
+    }
+  }
+}
