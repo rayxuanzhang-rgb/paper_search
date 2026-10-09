@@ -1,0 +1,8 @@
+{
+  "robotics_all": "cat:cs.RO",
+  "human_data": "(ti:robot OR abs:robot OR ti:embodied OR abs:embodied) AND (all:\"human video\" OR all:\"human demonstration\" OR all:egocentric OR all:teleoperation)",
+  "adaptation": "(all:robot OR all:robotic OR all:embodied) AND (all:\"in-context\" OR all:\"test-time\" OR all:\"retrieval augmented\" OR all:\"continual learning\")",
+  "world_action_models": "all:\"world action model\" OR all:\"world-action model\" OR all:\"video action model\" OR all:\"latent action\" OR all:\"vision language action\"",
+  "deployment": "(all:robot OR all:robotic) AND (all:\"failure recovery\" OR all:\"long horizon\" OR all:\"real time\" OR all:\"cross embodiment\" OR all:dexterous)",
+  "resources": "(all:robot OR all:embodied) AND (all:benchmark OR all:dataset)"
+}
