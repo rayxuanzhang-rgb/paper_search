@@ -1,5 +1,5 @@
 {
-  "at": "2026-10-09T06:39:43.228707+00:00",
+  "at": "2026-10-10T01:48:17.925062+00:00",
   "ok": true,
   "sources": {
     "robotics_all": {
@@ -36,8 +36,8 @@
   "backfill": {
     "robotics_all": {
       "status": "ok",
-      "count": 2448,
-      "windows_completed": 5,
+      "count": 0,
+      "windows_completed": 0,
       "start": "2026-09-10T00:00:00+00:00",
       "end": "2026-10-10T00:00:00+00:00",
       "complete": true,
@@ -45,8 +45,8 @@
     },
     "human_data": {
       "status": "ok",
-      "count": 234,
-      "windows_completed": 5,
+      "count": 0,
+      "windows_completed": 0,
       "start": "2026-09-10T00:00:00+00:00",
       "end": "2026-10-10T00:00:00+00:00",
       "complete": true,
@@ -54,8 +54,8 @@
     },
     "adaptation": {
       "status": "ok",
-      "count": 296,
-      "windows_completed": 5,
+      "count": 0,
+      "windows_completed": 0,
       "start": "2026-09-10T00:00:00+00:00",
       "end": "2026-10-10T00:00:00+00:00",
       "complete": true,
@@ -63,8 +63,8 @@
     },
     "world_action_models": {
       "status": "ok",
-      "count": 494,
-      "windows_completed": 5,
+      "count": 0,
+      "windows_completed": 0,
       "start": "2026-09-10T00:00:00+00:00",
       "end": "2026-10-10T00:00:00+00:00",
       "complete": true,
@@ -72,8 +72,8 @@
     },
     "deployment": {
       "status": "ok",
-      "count": 393,
-      "windows_completed": 5,
+      "count": 0,
+      "windows_completed": 0,
       "start": "2026-09-10T00:00:00+00:00",
       "end": "2026-10-10T00:00:00+00:00",
       "complete": true,
@@ -81,8 +81,8 @@
     },
     "resources": {
       "status": "ok",
-      "count": 632,
-      "windows_completed": 5,
+      "count": 0,
+      "windows_completed": 0,
       "start": "2026-09-10T00:00:00+00:00",
       "end": "2026-10-10T00:00:00+00:00",
       "complete": true,
@@ -94,8 +94,8 @@
     "status": "ok",
     "scope": "arxiv cs.RO recent announcement list",
     "reference_count": 613,
-    "missing_before": 7,
-    "recovered": 7,
+    "missing_before": 0,
+    "recovered": 0,
     "remaining": 0
   }
 }
