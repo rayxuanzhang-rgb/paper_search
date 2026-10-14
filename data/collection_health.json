@@ -1,36 +1,40 @@
 {
-  "at": "2026-10-13T03:04:21.495082+00:00",
-  "ok": true,
+  "at": "2026-10-14T01:16:27.658442+00:00",
+  "ok": false,
   "sources": {
     "robotics_all": {
       "status": "ok",
-      "count": 95,
-      "since": "2026-10-09T00:00:00+00:00"
+      "count": 68,
+      "since": "2026-10-10T00:00:00+00:00"
     },
     "human_data": {
-      "status": "ok",
-      "count": 11,
-      "since": "2026-10-09T00:00:00+00:00"
+      "status": "error",
+      "error_type": "HTTPStatusError",
+      "since": "2026-10-10T00:00:00+00:00",
+      "http_status": 429
     },
     "adaptation": {
-      "status": "ok",
-      "count": 12,
-      "since": "2026-10-09T00:00:00+00:00"
+      "status": "error",
+      "error_type": "HTTPStatusError",
+      "since": "2026-10-10T00:00:00+00:00",
+      "http_status": 429
     },
     "world_action_models": {
-      "status": "ok",
-      "count": 25,
-      "since": "2026-10-09T00:00:00+00:00"
+      "status": "error",
+      "error_type": "HTTPStatusError",
+      "since": "2026-10-10T00:00:00+00:00",
+      "http_status": 429
     },
     "deployment": {
-      "status": "ok",
-      "count": 19,
-      "since": "2026-10-09T00:00:00+00:00"
+      "status": "error",
+      "error_type": "HTTPStatusError",
+      "since": "2026-10-10T00:00:00+00:00",
+      "http_status": 503
     },
     "resources": {
       "status": "ok",
-      "count": 31,
-      "since": "2026-10-09T00:00:00+00:00"
+      "count": 17,
+      "since": "2026-10-10T00:00:00+00:00"
     }
   },
   "backfill": {
