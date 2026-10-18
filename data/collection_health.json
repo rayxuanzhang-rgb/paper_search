@@ -1,36 +1,37 @@
 {
-  "at": "2026-10-17T00:34:16.053027+00:00",
-  "ok": true,
+  "at": "2026-10-18T00:05:47.899281+00:00",
+  "ok": false,
   "sources": {
     "robotics_all": {
-      "status": "ok",
-      "count": 449,
-      "since": "2026-10-13T00:00:00+00:00"
+      "status": "error",
+      "error_type": "HTTPStatusError",
+      "since": "2026-10-14T00:00:00+00:00",
+      "http_status": 429
     },
     "human_data": {
       "status": "ok",
-      "count": 56,
-      "since": "2026-10-13T00:00:00+00:00"
+      "count": 33,
+      "since": "2026-10-14T00:00:00+00:00"
     },
     "adaptation": {
       "status": "ok",
-      "count": 45,
-      "since": "2026-10-13T00:00:00+00:00"
+      "count": 29,
+      "since": "2026-10-14T00:00:00+00:00"
     },
     "world_action_models": {
       "status": "ok",
-      "count": 108,
-      "since": "2026-10-13T00:00:00+00:00"
+      "count": 69,
+      "since": "2026-10-14T00:00:00+00:00"
     },
     "deployment": {
       "status": "ok",
-      "count": 99,
-      "since": "2026-10-13T00:00:00+00:00"
+      "count": 58,
+      "since": "2026-10-14T00:00:00+00:00"
     },
     "resources": {
       "status": "ok",
-      "count": 134,
-      "since": "2026-10-13T00:00:00+00:00"
+      "count": 76,
+      "since": "2026-10-14T00:00:00+00:00"
     }
   },
   "backfill": {
@@ -94,8 +95,8 @@
     "status": "ok",
     "scope": "arxiv cs.RO recent announcement list",
     "reference_count": 697,
-    "missing_before": 1,
-    "recovered": 1,
+    "missing_before": 0,
+    "recovered": 0,
     "remaining": 0
   }
 }
