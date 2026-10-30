@@ -1,36 +1,38 @@
 {
-  "at": "2026-10-29T01:51:30.408355+00:00",
-  "ok": true,
+  "at": "2026-10-30T01:59:58.596420+00:00",
+  "ok": false,
   "sources": {
     "robotics_all": {
-      "status": "ok",
-      "count": 275,
-      "since": "2026-10-25T00:00:00+00:00"
+      "status": "error",
+      "error_type": "HTTPStatusError",
+      "since": "2026-10-26T00:00:00+00:00",
+      "http_status": 429
     },
     "human_data": {
-      "status": "ok",
-      "count": 27,
-      "since": "2026-10-25T00:00:00+00:00"
+      "status": "error",
+      "error_type": "HTTPStatusError",
+      "since": "2026-10-26T00:00:00+00:00",
+      "http_status": 503
     },
     "adaptation": {
       "status": "ok",
-      "count": 30,
-      "since": "2026-10-25T00:00:00+00:00"
+      "count": 28,
+      "since": "2026-10-26T00:00:00+00:00"
     },
     "world_action_models": {
       "status": "ok",
-      "count": 53,
-      "since": "2026-10-25T00:00:00+00:00"
+      "count": 48,
+      "since": "2026-10-26T00:00:00+00:00"
     },
     "deployment": {
       "status": "ok",
-      "count": 56,
-      "since": "2026-10-25T00:00:00+00:00"
+      "count": 49,
+      "since": "2026-10-26T00:00:00+00:00"
     },
     "resources": {
       "status": "ok",
-      "count": 94,
-      "since": "2026-10-25T00:00:00+00:00"
+      "count": 89,
+      "since": "2026-10-26T00:00:00+00:00"
     }
   },
   "backfill": {
@@ -94,8 +96,8 @@
     "status": "ok",
     "scope": "arxiv cs.RO recent announcement list",
     "reference_count": 434,
-    "missing_before": 1,
-    "recovered": 1,
+    "missing_before": 0,
+    "recovered": 0,
     "remaining": 0
   }
 }

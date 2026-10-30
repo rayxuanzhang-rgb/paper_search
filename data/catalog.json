@@ -82154,9 +82154,9 @@
     },
     {
       "id": "2608.23927",
-      "version": "v2",
+      "version": "v3",
       "title": "GlanceWAM: Sparse Test-Time Imagination for World-Action Models",
-      "abstract": "Video generative models provide rich physical priors for robot learning, yet existing world-action models (WAMs) face a fundamental trade-off: synchronous video generation at control rate is latency-prohibitive, while abandoning test-time visual imagination sacrifices task success. We show that visual imagination achieves both real-time inference and superior success rates when generated asynchronously off the critical path and consumed directly in latent space. We introduce GlanceWAM, which decouples imagination from control on a single shared video DiT backbone: an asynchronous proposer glances ahead on a slow clock to imagine a single lookahead frame seconds into the future in the background, while an action head decodes action chunks at control rate (48 ms) purely in latent space without blocking. Enabled by a non-interfering attention mask that isolates video representations and staleness-robust horizon training that accommodates asynchronous lookahead aging, GlanceWAM breaks the speed-success dilemma. Trained purely on demonstrations, it attains 72.2% on the 24-task RoboCasa kitchen benchmark (vs. 67.1% for synchronous Cosmos Policy) and 99.0% on LIBERO while cutting per-chunk control latency $24\\times$ relative to synchronous world-action models (48 ms on one A100). In single-arm and bimanual real-robot manipulation, it achieves higher average success than $π_{0.5}$ without any robot-data pretraining. Code is available at https://github.com/linhanwang/GlanceWAM.",
+      "abstract": "Video generative models provide rich physical priors for robot learning, yet existing world-action models (WAMs) face a fundamental trade-off: synchronous video generation at control rate is latency-prohibitive, while abandoning test-time visual imagination sacrifices task success. We show that visual imagination achieves both real-time inference and superior success rates when generated asynchronously off the critical path and consumed directly in latent space. We introduce GlanceWAM, which decouples imagination from control on a single shared video DiT backbone: an asynchronous proposer glances ahead on a slow clock to imagine a single lookahead frame seconds into the future in the background, while an action head decodes action chunks at control rate (48 ms) purely in latent space without blocking. Enabled by a non-interfering attention mask that isolates video representations and staleness-robust horizon training that accommodates asynchronous lookahead aging, GlanceWAM breaks the speed-success dilemma. Trained purely on demonstrations, it attains 72.2% on the 24-task RoboCasa kitchen benchmark (vs. 67.1% for synchronous Cosmos Policy) and 99.0% on LIBERO while cutting per-chunk control latency 24x relative to synchronous world-action models (48 ms on one A100). In single-arm and bimanual real-robot manipulation, it achieves higher average success than $π_{0.5}$ without any robot-data pretraining. Code is available at https://github.com/linhanwang/GlanceWAM and real-robot videos at https://linhanwang.github.io/glancewam/.",
       "authors": [
         "Linhan Wang",
         "Zijian An",
@@ -82171,8 +82171,8 @@
         "Chang-Tien Lu"
       ],
       "date": "2026-08-25",
-      "updated": "2026-09-29T19:01:04Z",
-      "url": "https://arxiv.org/abs/2608.23927v2",
+      "updated": "2026-10-27T19:35:18Z",
+      "url": "https://arxiv.org/abs/2608.23927v3",
       "source": "arxiv",
       "categories": [
         "cs.CV",
@@ -82180,11 +82180,15 @@
         "cs.RO"
       ],
       "hit_dimensions": [
-        "robotics_all"
+        "adaptation",
+        "deployment",
+        "resources",
+        "robotics_all",
+        "world_action_models"
       ],
       "date_found": "2026-10-09",
       "review_status": "pending",
-      "review_changed_at": "2026-10-09T06:39:43.228707+00:00"
+      "review_changed_at": "2026-10-30T01:59:58.596420+00:00"
     },
     {
       "id": "2610.08800",
@@ -103405,7 +103409,7 @@
     },
     {
       "id": "2512.13399",
-      "version": "v3",
+      "version": "v4",
       "title": "Dual-Evolving Reinforcement Learning for Automated Reward Design",
       "abstract": "Crafting effective reward signals remains a central challenge in reinforcement learning (RL) for complex reasoning. Existing methods for automated reward optimization search with a fixed proposer which never learns from its costly trials. We present Dual-Evolving Reinforcement Learning (DERL), a dual-training framework for autonomous discovery of reward structures. An outer-loop proposer composes a reward from task primitives, and an inner policy trains with this reward. The proposer itself learns by policy gradient from the validation performance of the inner policy. Thus, DERL utilizes past-trial feedback to shape its reward-proposal distribution, an empirical meta-gradient of task success. We validate DERL on embodied (ALFWorld), scientific (ScienceWorld), and mathematical (GSM8K, MATH) reasoning. On multi-turn agent benchmarks, DERL outperforms strong baselines, significantly on out-of-distribution tasks. In mathematics, DERL improves on the outcome reward where directly added primitives hurt. Further analyses under matched compute show that our proposer effectively captures the meta-gradient to discover useful reward signals.",
       "authors": [
@@ -103416,8 +103420,8 @@
         "Difan Zou"
       ],
       "date": "2025-12-15",
-      "updated": "2026-10-13T21:12:48Z",
-      "url": "https://arxiv.org/abs/2512.13399v3",
+      "updated": "2026-10-27T21:15:33Z",
+      "url": "https://arxiv.org/abs/2512.13399v4",
       "source": "arxiv",
       "categories": [
         "cs.AI",
@@ -103428,7 +103432,7 @@
       ],
       "date_found": "2026-10-16",
       "review_status": "pending",
-      "review_changed_at": "2026-10-16T00:28:31.291567+00:00"
+      "review_changed_at": "2026-10-30T01:59:58.596420+00:00"
     },
     {
       "id": "2601.22449",
@@ -125573,9 +125577,9 @@
     },
     {
       "id": "2610.30988",
-      "version": "v1",
+      "version": "v2",
       "title": "In-Context Learning World Models for Robot Dual-Arm Manipulation of Soft Garment with Partial Observations",
-      "abstract": "Robust manipulation of soft objects, such as garments, is a critical skill for service and household robots to adopt, but remains challenging due to its high-dimensional state space, and material-dependent deformations. Humans address this challenge by using mental world models that \"imagine\" the shape and material properties from partial observations, which enables them to predict how actions affect future states. As such, embedding such world models in robots allows for better generalization in manipulating a wide variety of garments in the real world. However, learned world models typically require large amounts of real world data that is strenuous to collect, and a mechanism to infer latent properties that govern dynamics. We present a Soft-Object World Model that performs generative full-state estimation and action-conditioned dynamics prediction using a transformer backbone trained on large-scale simulated soft object interactions, with measures to mitigate the sim-to-real gap. By learning to infer latent shape and material cues through in-context learning over a variable-length partial point-cloud history, the model generalizes across robot embodiments, material parameters, garment types and shapes, and manipulation coordination modes without weight updates. The world model is then integrated with a Goal-Conditioned action planner for motion synthesis. We validate the approach in simulation and real world for bimanual garment folding, reporting improvements in reconstruction fidelity, prediction accuracy, and task success.",
+      "abstract": "Robust manipulation of soft objects, such as garments, is a critical skill for service and household robots to adopt, but remains challenging due to its high-dimensional state space, and material-dependent deformations. Humans address this challenge by using mental world models that \"imagine\" the shape and material properties from partial observations, which enables them to predict how actions affect future states. As such, embedding such world models in robots allows for better generalization in manipulating a wide variety of garments in the real world. However, learned world models typically require large amounts of real world data that is strenuous to collect, and a mechanism to infer latent properties that govern dynamics. We present a Soft-Object World Model that performs generative full-state estimation and action-conditioned dynamics prediction using a transformer backbone trained on large-scale simulated soft object interactions, with measures to mitigate the sim-to-real gap. By learning to infer latent shape and material cues through in-context learning over a variable-length partial point-cloud history, the model generalizes across robot embodiments, material parameters, garment types and shapes, and manipulation coordination modes without weight updates. The world model is then integrated with a Goal-Conditioned action planner for motion synthesis. We validate the approach in simulation and real world for bimanual garment folding, reporting improvements in reconstruction fidelity, prediction accuracy, and task success. Project Website: https://1am5hy.github.io/ICL soft object world model/",
       "authors": [
         "Hengyi Sim",
         "Quentin Rouxel",
@@ -125584,8 +125588,8 @@
         "Fei Chen"
       ],
       "date": "2026-10-22",
-      "updated": "2026-10-22T09:34:18Z",
-      "url": "https://arxiv.org/abs/2610.30988v1",
+      "updated": "2026-10-28T09:33:13Z",
+      "url": "https://arxiv.org/abs/2610.30988v2",
       "source": "arxiv",
       "categories": [
         "cs.RO"
@@ -125596,7 +125600,7 @@
       ],
       "date_found": "2026-10-24",
       "review_status": "pending",
-      "review_changed_at": "2026-10-24T00:46:55.247457+00:00"
+      "review_changed_at": "2026-10-30T01:59:58.596420+00:00"
     },
     {
       "id": "2610.30979",
@@ -127714,7 +127718,7 @@
     },
     {
       "id": "2610.33745",
-      "version": "v1",
+      "version": "v2",
       "title": "POD-RoPE: Rotary Position Encoding over Physical Observation Distributions for Embodied AI",
       "abstract": "Embodied perception requires positional representations that capture both physical geometry and the spatial and temporal extent of observations. We introduce POD-RoPE (Physical Observation Distribution RoPE), which represents token observation footprints as distributions over camera centers, viewing directions, and sampling times. Under independent sampling, expected rotations encode relative relationships between distributions; when each distribution collapses to a single address, the construction recovers pointwise RoPE. The same rotation statistics support Q/K matching and coherence-dependent V/O transformations, allowing observation geometry to guide both information selection and content aggregation. Per-token pre-aggregation avoids increasing sequence length or processing pairs of observation nodes. We evaluate POD-RoPE across four robot policy architectures, simulation and real-world manipulation, and complementary reconstruction, depth-estimation, and novel-view-synthesis tasks. Integrating POD-RoPE into Fast-WAM improves mean success from 91.83% to 92.88% across all 50 RoboTwin 2.0 tasks, and from 32.5% to 52.5% on two real-robot tasks on Sharpa North. Controlled reconstruction ablations support the contributions of distribution encoding and V/O transformations. In H20 model-block benchmarks, POD-RoPE achieves median forward-plus-backward speedups of $1.91\\times$ over P-RoPE and $5.34\\times$ over RayRoPE, with a median latency overhead of 17.4% over Standard RoPE. These results support physical observation distributions as an effective and computationally efficient basis for geometry-aware attention.",
       "authors": [
@@ -127723,12 +127727,11 @@
         "Jinpeng Liu",
         "Pengchuan Xiao",
         "Zhenlei Shao",
-        "Zhang Zhang",
-        "Shuxiang Lu"
+        "Zhang Zhang"
       ],
       "date": "2026-10-24",
-      "updated": "2026-10-24T15:39:30Z",
-      "url": "https://arxiv.org/abs/2610.33745v1",
+      "updated": "2026-10-28T18:42:15Z",
+      "url": "https://arxiv.org/abs/2610.33745v2",
       "source": "arxiv",
       "categories": [
         "cs.RO",
@@ -127740,7 +127743,7 @@
       ],
       "date_found": "2026-10-27",
       "review_status": "pending",
-      "review_changed_at": "2026-10-27T01:31:02.957193+00:00"
+      "review_changed_at": "2026-10-30T01:59:58.596420+00:00"
     },
     {
       "id": "2610.33735",
@@ -134826,7 +134829,7 @@
     },
     {
       "id": "2610.35040",
-      "version": "v1",
+      "version": "v2",
       "title": "Context-dependent Runtime Construction of Safe Regions of Attraction from Design-Time Identification for Multi-Candidate Simplex Architectures",
       "abstract": "Deploying safety-critical cyber-physical systems requires control strategies that reconcile high performance and adaptability with rigorous safety guarantees. Classical control strategies offer stability proofs but are conservative, while advanced optimization- and learning-based controllers achieve high performance but lack formal verification. Runtime Assurance (RTA) architectures bridge this gap by introducing their own (dis-)advantages. Safety filters use online optimization and introduce chattering, while Simplex permissiveness is bounded by the tightness of the certified Region of Attraction (RoA) of its High-Assurance (HA) controller. Targeting this conservatism, we present a two-stage RoA certification procedure leveraging contraction-based stability to establish a target set for Taylor-model-based reachability analysis. We then treat the closed-loop system under HA control as a switched system, enabling: (a) runtime construction of context-dependent safe RoA and (b) safe switching between HA candidates to optimize recovery and maximize the operating envelope of the uncertified High-Performance (HP) controller. We validate this framework on a robotic path-tracking task using a three-stage evaluation: Ordinary Differential Equation (ODE) simulation for theoretical verification, high-fidelity Gazebo simulation under unmodeled dynamics, and experiments on physical hardware. Results show that the Simplex architecture maintains safety under fault injection and successfully shields a behavioral-cloning-trained HP controller. Crucially, the decision module introduces negligible overhead (0.028 ms average, 4.13 ms worst-case), consuming under 10 % of the control period.",
       "authors": [
@@ -134837,8 +134840,8 @@
         "António Casimiro"
       ],
       "date": "2026-10-26",
-      "updated": "2026-10-26T08:53:49Z",
-      "url": "https://arxiv.org/abs/2610.35040v1",
+      "updated": "2026-10-27T21:00:04Z",
+      "url": "https://arxiv.org/abs/2610.35040v2",
       "source": "arxiv",
       "categories": [
         "cs.RO",
@@ -134850,7 +134853,7 @@
       ],
       "date_found": "2026-10-28",
       "review_status": "pending",
-      "review_changed_at": "2026-10-28T01:27:08.096192+00:00"
+      "review_changed_at": "2026-10-30T01:59:58.596420+00:00"
     },
     {
       "id": "2605.29864",
@@ -136888,8 +136891,8 @@
     },
     {
       "id": "2610.34051",
-      "version": "v1",
-      "title": "Behavior Spatial Benchmark: Evaluating Spatial Understanding for Robotics",
+      "version": "v2",
+      "title": "BEHAVIOR-Spatial Benchmark: Evaluating Spatial Understanding for Robotics",
       "abstract": "Robot tasks require grounding spatial language in physical scenes, but task success alone cannot establish whether spatial instructions are followed. We present BEHAVIOR-Spatial, a benchmark built on BEHAVIOR-1K that measures spatial question answering, point-based target grounding, and robot action to examine how VLM spatial understanding relates to VLA behavior. It comprises 3,256 spatial questions across 49 activities, 1,240 grounding queries across 14 manipulation tasks, and action evaluations covering those 14 tasks and 10 navigation tasks. Our manipulation protocol evaluates held-out configurations and instruction following when the requested target changes within a fixed training layout. The baseline achieves 41.6% on held-out configurations but only 16.1% under changed instructions. VLM adaptation and robot-data pretraining provide limited improvements, whereas oracle visual target cues raise these rates to 60.3% and 38.0%, respectively. Perception evaluations reveal policy-dependent correlations between VLM question-answering and grounding accuracy and VLA manipulation performance. Together, these findings motivate evaluating spatial instruction following alongside task completion and examining when spatial perception performance translates into robot behavior. Project website: https://arielchen07.github.io/behavior-spatial/.",
       "authors": [
         "Sirui Chen",
@@ -136902,8 +136905,8 @@
         "Jiajun Wu"
       ],
       "date": "2026-10-25",
-      "updated": "2026-10-25T04:23:49Z",
-      "url": "https://arxiv.org/abs/2610.34051v1",
+      "updated": "2026-10-28T02:48:19Z",
+      "url": "https://arxiv.org/abs/2610.34051v2",
       "source": "arxiv",
       "categories": [
         "cs.RO",
@@ -136915,7 +136918,7 @@
       ],
       "date_found": "2026-10-28",
       "review_status": "pending",
-      "review_changed_at": "2026-10-28T01:27:08.096192+00:00"
+      "review_changed_at": "2026-10-30T01:59:58.596420+00:00"
     },
     {
       "id": "2610.34041",
@@ -138208,7 +138211,7 @@
     },
     {
       "id": "2610.37509",
-      "version": "v1",
+      "version": "v2",
       "title": "Ego-CEVR: Learning Cross-Embodiment Visual Representations from Human Egocentric Videos",
       "abstract": "As egocentric video becomes increasingly available for embodied learning, an important research question is how to turn this low-cost, scalable source of data into robot manipulation capabilities. Egocentric videos naturally provide rich context for high-level task understanding, while real-robot demonstrations with wrist observations and action annotations provide supervision for fine-grained action alignment. We present Ego-CEVR, a data-native framework for hierarchical visual representation learning that assigns distinct learning objectives to global and interaction representations. The global module learns object relations, task state, and temporal progress through future prediction on egocentric video. The Interaction module interprets wrist observations in global context and learns local alignment and contact cues through robot action supervision. Separate residual paths expose both representations to the action policy, preserving direct access to task context alongside fine-grained execution information. Ego-CEVR supports independent pretraining of its global video module on large-scale human egocentric videos and videos from diverse robot embodiments, without requiring robot action labels or paired wrist observations.",
       "authors": [
@@ -138222,19 +138225,22 @@
         "Chen Wang",
         "Tianfu Li",
         "Samith Va",
+        "Xiyue Zhang",
         "Bin Qian",
         "Junwei Li",
         "Wenjia Ding",
         "Yicheng Xu",
-        "Chang Zhou",
+        "Bowen Jiang",
+        "Wenhao Wang",
         "Ziwei Wang",
+        "Chang Zhou",
         "Li Liu",
         "Xiu Li",
         "Maoqing Yao"
       ],
       "date": "2026-10-27",
-      "updated": "2026-10-27T16:30:35Z",
-      "url": "https://arxiv.org/abs/2610.37509v1",
+      "updated": "2026-10-28T09:29:55Z",
+      "url": "https://arxiv.org/abs/2610.37509v2",
       "source": "arxiv",
       "categories": [
         "cs.RO"
@@ -138247,7 +138253,7 @@
       ],
       "date_found": "2026-10-29",
       "review_status": "pending",
-      "review_changed_at": "2026-10-29T01:51:30.408355+00:00"
+      "review_changed_at": "2026-10-30T01:59:58.596420+00:00"
     },
     {
       "id": "2610.37470",
@@ -139234,6 +139240,670 @@
       "date_found": "2026-10-29",
       "review_status": "pending",
       "review_changed_at": "2026-10-29T01:51:30.408355+00:00"
+    },
+    {
+      "id": "2610.38436",
+      "version": "v1",
+      "title": "Continual Adaptation Across Modalities: Learning and Forgetting in Unified Multimodal Models",
+      "abstract": "Unified multimodal models (UMMs), which can process and generate diverse modalities within a single framework, have recently emerged as a powerful paradigm. However, when these models undergo continual learning on multiple tasks across different modalities, their learning and forgetting dynamics remain poorly understood. In this paper, we systematically investigate how architectural design and adaptation method shape intra-modal learning and cross-modal interference between the generation and understanding sides. Specifically, we report three findings. First, the severity of cross-modal interference decreases with the degree of modality-specific parameter isolation. Second, a within-model asymmetry: the generation side of a UMM is markedly more fragile than its understanding side. Third, what post-training adds is the first to be forgotten: purely post-training capabilities such as personalized generation collapse by 84\\% to 90\\%, while pretraining capabilities remain stable. Together, these results clarify how parameter isolation and post-training fragility shape UMMs' learning and forgetting dynamics, offering a starting point for developing continually evolving UMMs.",
+      "authors": [
+        "Xinrui Wang",
+        "Zhihao Chen",
+        "Jia Tang",
+        "Alexandra Gomez-Villa",
+        "Bartlomiej Twardowski",
+        "Joost van de Weijer",
+        "Songcan Chen"
+      ],
+      "date": "2026-10-28",
+      "updated": "2026-10-28T08:19:03Z",
+      "url": "https://arxiv.org/abs/2610.38436v1",
+      "source": "arxiv",
+      "categories": [
+        "cs.LG"
+      ],
+      "hit_dimensions": [
+        "adaptation"
+      ],
+      "date_found": "2026-10-30",
+      "review_status": "pending",
+      "review_changed_at": "2026-10-30T01:59:58.596420+00:00"
+    },
+    {
+      "id": "2610.38101",
+      "version": "v1",
+      "title": "AI-Driven Digital Twin Framework for Warehouse Logistics Automation Optimization",
+      "abstract": "In recent years, warehouse logistics optimization has increasingly focused on intelligent, data-driven systems to enhance operational efficiency. Conventional static product placement strategies are being progressively replaced by dynamic slotting approaches that can adapt to real-time variations in warehouse conditions. In this work, we present a novel framework that employs a reinforcement learning agent integrated within a FlexSim-based Digital Twin environment for real-time product placement optimization. The proposed agent continuously learns from streaming operational data, enabling it to reduce picking time while improving overall system throughput. The simulation environment models a four-zone warehouse layout with forklift-based material handling and leverages the Asset Administration Shell framework to ensure seamless interaction between the learning agent, physical asset, and the digital twin. Experimental evaluation demonstrates substantial performance gains, with the proposed approach achieving a 29.66\\% reduction in average picking time, a 35.42\\% increase in throughput, and an 18.54\\% decrease in travel distance.",
+      "authors": [
+        "Md Mahinur Alam",
+        "Kanita Jerin Tanha",
+        "Md Tanjin Alam",
+        "Shadman Sakib",
+        "Min Gyu Kim"
+      ],
+      "date": "2026-10-28",
+      "updated": "2026-10-28T00:37:21Z",
+      "url": "https://arxiv.org/abs/2610.38101v1",
+      "source": "arxiv",
+      "categories": [
+        "cs.AI"
+      ],
+      "hit_dimensions": [
+        "adaptation",
+        "deployment"
+      ],
+      "date_found": "2026-10-30",
+      "review_status": "pending",
+      "review_changed_at": "2026-10-30T01:59:58.596420+00:00"
+    },
+    {
+      "id": "2606.11087",
+      "version": "v2",
+      "title": "Test-Time Gradient Guidance of Flow Policies in Reinforcement Learning",
+      "abstract": "Expressive continuous control policies, such as diffusion and flow models, form the backbone of recent advances in scaling imitation learning for simulated and real robot control. While they are known to scale stably in the supervised imitation learning setting, incorporating them into reinforcement learning (RL) pipelines for policy improvement has proven more difficult. It often requires specialized training objectives or backpropagating through denoising processes, which cause well-known issues with stability and affect scalability. In this paper we study the question of whether simple policy improvement schemes at test time alone, leaving stable supervised policy training intact, can be a competitive alternative which sidesteps these issues. To this end, we propose QGF (Q-Guided Flow), an RL algorithm that performs policy optimization entirely at test time. QGF works by pre-training both a reference flow policy (via a standard behavioral cloning objective) and a value function critic and, at test time, using the value gradient to guide the reference policy to generate higher-value actions without any additional policy learning. Empirically, QGF outperforms prior test-time RL methods on single-task and goal-conditioned offline RL benchmarks with high-dimensional action spaces, and is competitive with state-of-the-art training-time algorithms while being much cheaper to run. Moreover, it exhibits favorable scaling with model size by avoiding the instability of actor-critic training, offering a practical and effective alternative RL algorithm with expressive policies.",
+      "authors": [
+        "Zhiyuan Zhou",
+        "Andy Peng",
+        "Charles Xu",
+        "Qiyang Li",
+        "Jost Tobias Springenberg",
+        "Kevin Frans",
+        "Sergey Levine"
+      ],
+      "date": "2026-06-09",
+      "updated": "2026-10-27T18:58:24Z",
+      "url": "https://arxiv.org/abs/2606.11087v2",
+      "source": "arxiv",
+      "categories": [
+        "cs.LG",
+        "cs.AI"
+      ],
+      "hit_dimensions": [
+        "adaptation",
+        "resources"
+      ],
+      "date_found": "2026-10-30",
+      "review_status": "pending",
+      "review_changed_at": "2026-10-30T01:59:58.596420+00:00"
+    },
+    {
+      "id": "2610.37806",
+      "version": "v1",
+      "title": "TACOS: Terrain-Aware COntact Supervision for Visual Footstep Planning",
+      "abstract": "Humans navigate their environment based on their vision system, anticipating how the ground will respond before committing to a step. Self-supervised learning could provide legged robots the same ability, but the supervisory signal is typically chosen on intuition, and its effect on what the model learns is rarely examined. We present Terrain-Aware COntact Supervision (TACOS), which proposes a meaningful and consistent footstep instability score, based on the residual of a factor graph in legged state estimation. It projects the continuous score into preceding images to supervise a dense visual predictor. We propose two variants, a hard score that exploits hindsight and a causal soft score available immediately. Both metrics are compared against state-of-the-art alternatives in two independent evaluations that share no data or labels. On 1716 manually annotated contacts, both variants outperform every evaluated alternative at detecting instability and ranking its severity, improving pooled severity ranking by 28 % over the strongest baseline. On three outdoor test runs, our metric also trains the most accurate visual predictor, improving rank correlation by 58 % over the strongest alternative, and by a further 25 % when supplemented with onboard context. In a real-world experiment over a 50 m forest trajectory, the trained predictor handles non-geometric terrain properties such as mud and vegetation, while stepping around geometric obstacles like fallen branches. Code is available for reproducibility at https://github.com/norlab-ulaval/TACOS.",
+      "authors": [
+        "Jean-Michel Fortin",
+        "William Larrivée-Hardy",
+        "Gabriel Jeanson",
+        "Olivier Gamache",
+        "Daniele De Martini",
+        "François Pomerleau",
+        "Philippe Giguère"
+      ],
+      "date": "2026-10-27",
+      "updated": "2026-10-27T18:25:19Z",
+      "url": "https://arxiv.org/abs/2610.37806v1",
+      "source": "arxiv",
+      "categories": [
+        "cs.RO",
+        "cs.CV"
+      ],
+      "hit_dimensions": [
+        "adaptation"
+      ],
+      "date_found": "2026-10-30",
+      "review_status": "pending",
+      "review_changed_at": "2026-10-30T01:59:58.596420+00:00"
+    },
+    {
+      "id": "2610.38661",
+      "version": "v1",
+      "title": "Quantize by Doing: Task-Guided Mixed-Precision Quantization of Vision-Language-Action Models",
+      "abstract": "Post-training quantization (PTQ) reduces the memory footprint of vision-language-action (VLA) models, but lowering bit widths while maintaining task performance remains challenging. Existing work has used sensitivity estimates from calibration data to assign bit widths to different model components. However, using task success directly to guide mixed-precision allocation is underexplored because closed-loop evaluations are costly and the effect of quantizing one component depends on the precision of other components. To this end, we propose \\textbf{QbD-VLA}, a task-guided mixed-precision quantization method that uses task success from short closed-loop evaluations to assign weight and activation bit widths while accounting for interactions between model components. Experiments covering four VLA models and all four LIBERO suites show strong task performance at average precisions of approximately 4 bits for weights and fewer than 6 bits for activations. On SIMPLER, the gain over uniform quantization is small. On a Franka Research 3 robot arm, simulation-selected allocations show no detected success-rate loss on X-VLA but fail on $π_{0.5}$. These findings support using task success to guide mixed-precision VLA quantization, while highlighting the need for real-world evaluation before deployment. Code is available at \\href{https://github.com/jiuyixu25/QbD-VLA}{\\texttt{github.com/jiuyixu25/QbD-VLA}}.",
+      "authors": [
+        "Jiuyi Xu",
+        "Xiao Hu",
+        "Meida Chen",
+        "Song Wang",
+        "Yang Ye",
+        "Yangming Shi"
+      ],
+      "date": "2026-10-28",
+      "updated": "2026-10-28T18:46:57Z",
+      "url": "https://arxiv.org/abs/2610.38661v1",
+      "source": "arxiv",
+      "categories": [
+        "cs.RO"
+      ],
+      "hit_dimensions": [
+        "world_action_models"
+      ],
+      "date_found": "2026-10-30",
+      "review_status": "pending",
+      "review_changed_at": "2026-10-30T01:59:58.596420+00:00"
+    },
+    {
+      "id": "2610.38508",
+      "version": "v1",
+      "title": "SaiVLA-JEPA: Evaluating Future Latent Prediction in JEPA-Conditioned VLA Control",
+      "abstract": "Joint-embedding predictive architectures (JEPAs) learn to predict representations rather than pixels, offering a compact way to model how visual scenes evolve. We ask whether this predictive objective improves closed-loop control when a vision-language-action (VLA) policy already uses V-JEPA features. We call our JEPA-conditioned flow policy family SaiVLA-JEPA. It combines a vision-language model with a diffusion transformer action expert and receives features from a frozen V-JEPA encoder. Two lightweight auxiliary heads predict future representations during training and are omitted at inference, leaving the action sampler unchanged. We compare policies without JEPA features, with current JEPA conditioning, and with additional future supervision on 10,030 paired LIBERO-Plus episodes. Current JEPA conditioning reaches about 82.5% success versus 71.6% without JEPA, while future supervision provides no detectable aggregate gain at the evaluated training budget. We separately evaluate SaiVLA-JEPA-TCA, which adapts latent context, and SaiVLA-JEPA-TPA, which adapts selected parameters. The context-retry gain is a system-level result under a larger attempt budget; parameter adaptation shows no consistent advantage over the frozen policy and target controls. These results motivate assessing latent-prediction objectives through paired closed-loop rollouts rather than latent loss alone.",
+      "authors": [
+        "Rufeng Xiao",
+        "Ruihao Xiao",
+        "Wei Chen",
+        "Xinhai Sun"
+      ],
+      "date": "2026-10-28",
+      "updated": "2026-10-28T09:25:24Z",
+      "url": "https://arxiv.org/abs/2610.38508v1",
+      "source": "arxiv",
+      "categories": [
+        "cs.RO",
+        "cs.AI"
+      ],
+      "hit_dimensions": [
+        "world_action_models"
+      ],
+      "date_found": "2026-10-30",
+      "review_status": "pending",
+      "review_changed_at": "2026-10-30T01:59:58.596420+00:00"
+    },
+    {
+      "id": "2610.38199",
+      "version": "v1",
+      "title": "Embodied at Sea: Imitation Learning for Multi-Task Underwater Manipulation",
+      "abstract": "Behavior Cloning has demonstrated promising generalization capabilities for robotic manipulation in terrestrial environments. However, marine visual distortions and dynamic currents create a severe domain shift that remains a key bottleneck in adapting generalist architectures to underwater field manipulation. To address this, 1616 episodes of underwater manipulation data were collected in calm and turbulent waters and were used to train 14 generalist Vision-Language-Action (VLA) models (DynamicVLA) with varying proprioception observation configurations. Across three tasks on 1260 gradable on-hardware rollouts in a pool, 10 models outperformed the baseline, with the highest-performing model achieving a 93.3% overall success rate, including partial successes. Results are also introduced from a case study evaluating the performance of a single-task Action Chunking Transformer (ACT) and a generalist VLA (SmolVLA) policy for two tasks in marine archaeology and conservation: grasping and mooring. Experiments are performed on an ROV on and around the WWII wreck Coralita X127 and at Manoel Island Marina, Malta. Across 748 collected episodes and 508 gradable on-hardware rollouts, the ACT policy substantially outperformed SmolVLA (47.9% vs. 7.9% pooled success rate), earning a 66.7% success rate on the most successful task at the marine archaeological site. To enable further contributions to embodied intelligence in marine field robotics, the BLUEMBODIED KIT used to collect data, train models, and deploy policies on the ROV has been open sourced.",
+      "authors": [
+        "Greta Perez-Haiek",
+        "Luca Macesanu",
+        "Kevin Angers",
+        "Mohammed Imam",
+        "Timothy Gambin",
+        "Christopher Clark"
+      ],
+      "date": "2026-10-28",
+      "updated": "2026-10-28T02:49:53Z",
+      "url": "https://arxiv.org/abs/2610.38199v1",
+      "source": "arxiv",
+      "categories": [
+        "cs.RO",
+        "cs.LG"
+      ],
+      "hit_dimensions": [
+        "world_action_models"
+      ],
+      "date_found": "2026-10-30",
+      "review_status": "pending",
+      "review_changed_at": "2026-10-30T01:59:58.596420+00:00"
+    },
+    {
+      "id": "2607.13429",
+      "version": "v3",
+      "title": "Generalizable VLA Finetuning via Representation Anchoring and Language-Action Alignment",
+      "abstract": "Finetuning a pretrained vision-language model (VLM) on robot demonstrations via behavior cloning (BC) has become the standard recipe for vision-language-action (VLA) policies. However, BC finetuning progressively overwrites the pretrained representations that support visual and semantic generalization. Co-training on web image-text data, a common remedy, applies language and action losses to separate observations, leaving VLAs with language-action misalignment that standard manipulation benchmarks do not expose. We propose Anchor-Align, which augments BC with two objectives: Vision-Language Anchoring distills layer-wise representations from a frozen VLM copy to prevent this drift, while Language-Action Alignment converts each action target into a discrete motion-direction label and jointly trains language and action prediction on the same robot observation. We conduct real-world evaluations across eight manipulation settings on single-arm xArm7 and bimanual YAM robots, using two VLA architectures with regression and flow-matching action heads. Across these settings, Anchor-Align consistently improves over BC on novel targets, layouts, and motion-sensitive bimanual tasks requiring coordinated control. At scale in simulation, we demonstrate consistent improvements on OOD perturbations, perceptual robustness, and long-horizon control across LIBERO-PRO, LIBERO-Plus, and CALVIN, respectively, suggesting that preserving pretrained representations and effective action learning are not fundamentally at odds. Project page: anchoralignvla.github.io",
+      "authors": [
+        "Dwip Dalal",
+        "Shivansh Patel",
+        "Chahit Jain",
+        "Jeonghwan Kim",
+        "Utkarsh Mishra",
+        "Yuchen Song",
+        "Alex Baratian",
+        "Hyeonjeong Ha",
+        "Heng Ji",
+        "Svetlana Lazebnik",
+        "Unnat Jain"
+      ],
+      "date": "2026-07-15",
+      "updated": "2026-10-28T01:44:03Z",
+      "url": "https://arxiv.org/abs/2607.13429v3",
+      "source": "arxiv",
+      "categories": [
+        "cs.RO",
+        "cs.CV"
+      ],
+      "hit_dimensions": [
+        "deployment",
+        "resources",
+        "world_action_models"
+      ],
+      "date_found": "2026-10-30",
+      "review_status": "pending",
+      "review_changed_at": "2026-10-30T01:59:58.596420+00:00"
+    },
+    {
+      "id": "2610.38000",
+      "version": "v1",
+      "title": "Self-Labeled Preference Transfer for Steerable Robot Manipulation",
+      "abstract": "Vision-language-action (VLA) policies can learn to follow execution preferences, such as where to grasp an object or how to move around an obstacle, from demonstrations annotated with preference labels. Providing these annotations for every new task, however, is costly. We study whether learned preference control can transfer to new tasks whose demonstrations contain the desired behaviors but lack preference annotations. We find that a policy trained with preference annotations can follow preferences on a new task before adaptation but achieves limited task success. Fine-tuning on target demonstrations without these annotations improves task success while weakening preference control. Motivated by this finding, we introduce Self-Labeled Preference Transfer (SPT). SPT jointly trains a shared vision-language backbone for preference-conditioned action prediction and preference recognition on annotated source demonstrations. It then freezes the recognizer to preserve its cross-task preference recognition capability and uses it to self-label target demonstrations for policy fine-tuning. Across five types of execution preferences in simulation, the recognizer achieves 96.4% accuracy, and SPT reaches 84.8% preference following and 89.2% task success, compared with 59.4% and 88.0% for naive finetuning. We further extend to multiple preferences, achieving 93.8% preference following compared with 42.5% of baselines. In real-world experiments, SPT increases preference following from 52.5% to 92.5% relative to naive finetuning across two task transfers. These results show that SPT can support preference adaptation across tasks and objects while maintaining success, without additional manual preference annotations.",
+      "authors": [
+        "Kaiwen Hong",
+        "Shaoting Peng",
+        "Xiangyu Zeng",
+        "Pengcheng Wang",
+        "Boyuan Tian",
+        "Haonan Chen",
+        "Yifan Zhu",
+        "Yixiao Wang",
+        "Katherine Driggs-Campbell"
+      ],
+      "date": "2026-10-27",
+      "updated": "2026-10-27T21:51:38Z",
+      "url": "https://arxiv.org/abs/2610.38000v1",
+      "source": "arxiv",
+      "categories": [
+        "cs.RO"
+      ],
+      "hit_dimensions": [
+        "world_action_models"
+      ],
+      "date_found": "2026-10-30",
+      "review_status": "pending",
+      "review_changed_at": "2026-10-30T01:59:58.596420+00:00"
+    },
+    {
+      "id": "2610.37963",
+      "version": "v1",
+      "title": "Self-Supervised Latent Action-Conditioned World Modeling for Time Series",
+      "abstract": "Time-series data play an important role in various tasks, such as weather forecasting, web traffic analysis, and speech recognition. Recently, pioneering studies have increasingly adopted Joint-Embedding Predictive Architecture (JEPA) based encoders to learn time-series representations through latent-space prediction. However, they often overlook the underlying factors governing transitions between time-series observations. In this work, we hypothesize that explicitly modeling the information behind changes in time series can facilitate time-series modeling. Building on this hypothesis, we propose ACTS-WM, a self-supervised latent action-conditioned world model framework for time-series analysis. First, we introduce a latent action modeling approach that infers the underlying information behind time-series transitions as latent actions, without requiring explicit action annotations. We then develop a JEPA-based encoder and an action-conditioned world model to predict target time-series representations conditioned on the learned latent actions and task information. We evaluate ACTS-WM across 4 representative tasks on 22 datasets from diverse domains, covering univariate and multivariate forecasting and classification. Comprehensive experiments demonstrate that ACTS-WM can improve downstream performance over pretrained JEPA-based encoders by learning complementary representations.",
+      "authors": [
+        "Chia-Han Kuo",
+        "Chengshuai Zhao",
+        "Huan Liu",
+        "Lo Pang-Yun Ting"
+      ],
+      "date": "2026-10-27",
+      "updated": "2026-10-27T20:49:21Z",
+      "url": "https://arxiv.org/abs/2610.37963v1",
+      "source": "arxiv",
+      "categories": [
+        "cs.LG",
+        "cs.AI"
+      ],
+      "hit_dimensions": [
+        "world_action_models"
+      ],
+      "date_found": "2026-10-30",
+      "review_status": "pending",
+      "review_changed_at": "2026-10-30T01:59:58.596420+00:00"
+    },
+    {
+      "id": "2610.37917",
+      "version": "v1",
+      "title": "What Actually Matters? A Paired Evaluation of Inference Settings for $π_{0.5}$ on BEHAVIOR-1K",
+      "abstract": "Vision-Language-Action (VLA) models offer a promising paradigm for general-purpose household robotics. However, inference and data-collection strategies that have been deployed in smaller-scale settings do not necessarily generalize to large-scale, diverse task suites. To address this gap, we conduct a systematic, paired evaluation of previously proposed inference and data-collection strategies across all 100 tasks. Our evaluation uses a fine-tuned $π_{0.5}$ model based on the 2025 BEHAVIOR Challenge winner, which achieves a Q-score of 0.39 on the public test set. These results show that proposed strategies do not transfer uniformly to new environments and tasks. Project page, videos, and detailed analysis: https://rubenhammele.github.io/behavior2026",
+      "authors": [
+        "Ruben Hammele",
+        "Samira Huber",
+        "Mohammad Nazeri",
+        "Amirreza Payandeh",
+        "Alexandyr T. Card",
+        "Aaron Nguyen",
+        "Anuj Pokhrel",
+        "Daeun Song",
+        "Xuesu Xiao",
+        "Sören Pirk"
+      ],
+      "date": "2026-10-27",
+      "updated": "2026-10-27T19:59:45Z",
+      "url": "https://arxiv.org/abs/2610.37917v1",
+      "source": "arxiv",
+      "categories": [
+        "cs.RO",
+        "cs.AI",
+        "cs.CV",
+        "cs.LG"
+      ],
+      "hit_dimensions": [
+        "world_action_models"
+      ],
+      "date_found": "2026-10-30",
+      "review_status": "pending",
+      "review_changed_at": "2026-10-30T01:59:58.596420+00:00"
+    },
+    {
+      "id": "2610.38233",
+      "version": "v1",
+      "title": "HERON: Real-Time Obstacle-Aware Reachability Maps for Mobile Manipulators",
+      "abstract": "Mobile manipulator robots rarely reposition their base during manipulation, because doing so requires real-time knowledge of how well the arm can reach its surroundings among obstacles. Reachability maps (RMs) encode this knowledge, but existing methods are slow, coarse (typically 5 cm), or ignore real obstacles. This article asks whether a neural network can predict an obstacle-aware RM at 2 cm resolution from a live depth camera, on embedded hardware, fast enough for online use. We present HERON, a 3D U-Net trained on RMs computed with the GPU-accelerated inverse kinematics of cuRobo, first on synthetic scenes and then on real depth data, and deployed on a Jetson AGX Orin with TensorRT and INT8 quantization. HERON predicts the RM of a 2.56 m cube around the arm in 115 ms on average, for a measured system rate of 8.57 Hz, close to the 10 Hz update rate of the obstacle map, whereas computing the same map with cuRobo takes about 90 min. Against the cuRobo ground truth, 95% of the voxels lie within 1 class out of 51 with the FP32 model and within 3 classes with the INT8 model, with a Pearson correlation of 0.99 and a quadratic weighted kappa above 0.9. Accuracy degrades mainly at the workspace boundaries.",
+      "authors": [
+        "G. Dupoiron",
+        "F. Michaud",
+        "J. P. Roberge"
+      ],
+      "date": "2026-10-28",
+      "updated": "2026-10-28T03:34:17Z",
+      "url": "https://arxiv.org/abs/2610.38233v1",
+      "source": "arxiv",
+      "categories": [
+        "cs.RO"
+      ],
+      "hit_dimensions": [
+        "deployment"
+      ],
+      "date_found": "2026-10-30",
+      "review_status": "pending",
+      "review_changed_at": "2026-10-30T01:59:58.596420+00:00"
+    },
+    {
+      "id": "2610.38034",
+      "version": "v1",
+      "title": "Learning from Relative Action Credit for Escaping Local Minima",
+      "abstract": "Reinforcement learning holds the promise of robots that learn manipulation skills from interaction alone, without pretrained priors or demonstration data. In practice, on-policy methods such as PPO routinely stall on long-horizon, contact-rich tasks: dense reward shaping carries the policy through stages, yet stitching them together and discovering sparsely rewarded events rarely succeeds. We trace this failure to the missing action discrimination in state-value credit assignment: a state-value critic judges progress only by episode outcomes, so when the policy converges to a partial solution all outcomes coincide, and improvement stops because no action can prove better than another. We therefore extend PPO with an action conditioned value critic which, can compare the executed action with alternatives sampled at the same state and aid the learning signal. Combined with Generalized Advantage Estimation and a bound on exploration noise, we show how the extended algorithm escapes the plateau and completes precise peg insertion within a training budget where PPO with identical exploration fails.",
+      "authors": [
+        "Giovanni Minelli",
+        "Giulio Turrisi",
+        "Lorenzo Amatucci",
+        "Victor Barasuol",
+        "Claudio Semini"
+      ],
+      "date": "2026-10-27",
+      "updated": "2026-10-27T22:38:17Z",
+      "url": "https://arxiv.org/abs/2610.38034v1",
+      "source": "arxiv",
+      "categories": [
+        "cs.LG",
+        "cs.RO"
+      ],
+      "hit_dimensions": [
+        "deployment"
+      ],
+      "date_found": "2026-10-30",
+      "review_status": "pending",
+      "review_changed_at": "2026-10-30T01:59:58.596420+00:00"
+    },
+    {
+      "id": "2604.11512",
+      "version": "v2",
+      "title": "EdgeCIM: A Hardware-Software Co-Design for CIM-Based Acceleration of Small Language Models",
+      "abstract": "The growing demand for deploying Small Language Models (SLMs) on edge devices, including laptops, smartphones, automotive and robotic computing platforms, and high-performance embedded systems, has exposed fundamental inefficiencies in existing accelerators. While GPUs handle prefill workloads efficiently, the autoregressive decoding phase is dominated by GEMV operations that are inherently memory-bound, resulting in poor utilization and prohibitive energy costs at the edge. In this work, we present EdgeCIM, a hardware-software co-design framework for accelerating autoregressive decoding of SLMs on edge devices in latency-critical applications. At its core is a CIM macro, implemented in 65 nm, coupled with a tile-based mapping strategy that balances pipeline stages, maximizing parallelism while alleviating DRAM bandwidth bottlenecks. Our simulator enables design space exploration of SLMs up to 4B parameters, identifying hardware configurations that optimize latency and energy according to a configurable objective function. On LLaMA3.2 3B (INT4), EdgeCIM achieves 1.76x and 3.21x higher throughput than NVIDIA Jetson AGX Orin and Orin Nano Super operating in MAXN mode, respectively, and 7.07x higher throughput than Qualcomm's Snapdragon-X Elite. Extensive benchmarks on TinyLLaMA 1.1B, LLaMA3.2 (1B, 3B), Phi 3.5 mini 3.8B, Qwen2.5 (0.5B, 1.5B, 3B), SmolLM2 1.7B, SmolLM3 3B, and Qwen3 (0.6B, 1.7B, 4B) reveal that our accelerator, at INT4 precision, achieves on average 336.4 tokens/s and 173 tokens/J. These results establish EdgeCIM as a compelling solution towards real-time, energy-efficient, latency-critical SLM inference at the edge.",
+      "authors": [
+        "Jinane Bazzi",
+        "Mariam Rakka",
+        "Fadi Kurdahi",
+        "Mohammed E. Fouda",
+        "Ahmed Eltawil"
+      ],
+      "date": "2026-04-13",
+      "updated": "2026-10-27T19:36:31Z",
+      "url": "https://arxiv.org/abs/2604.11512v2",
+      "source": "arxiv",
+      "categories": [
+        "cs.AR",
+        "cs.AI"
+      ],
+      "hit_dimensions": [
+        "deployment",
+        "resources"
+      ],
+      "date_found": "2026-10-30",
+      "review_status": "pending",
+      "review_changed_at": "2026-10-30T01:59:58.596420+00:00"
+    },
+    {
+      "id": "2610.37818",
+      "version": "v1",
+      "title": "GOFish: Full Field-of-View Gaussian Splatting and Mesh Extraction",
+      "abstract": "Robots, autonomous vehicles, and consumer 360° cameras use fisheye lenses for wide fields of view (FoVs). Simulation-ready digital twins require photorealistic rendering across the full FoV and an aligned collision mesh. However, prior fisheye Gaussian Splatting methods only rasterize up to 180° and do not produce meshes, while Gaussian surface reconstruction methods assume pinhole training images. We present GOFish, the first 3D Gaussian Splatting surface reconstruction method to train directly on fisheye images, rasterize FoVs beyond 180°, and extract an aligned mesh from the same scene. Calibrated densification recovers the surface across the entire FoV, while Calibrated Mip Filtering and Wide-Angle Appearance Modeling keep pixel blur and lens falloff out of the scene and mesh. Across the 200° FIORD and 205° FullCircle benchmarks, GOFish improves PSNR over the best prior method by 2.28 and 1.97 dB, respectively. It also outperforms fisheye rendering baselines within their own FoVs and achieves the highest mesh F-score on FIORD and the main ScanNet++ set. Together, the Gaussian scene and mesh form a LiDAR-free, simulation-ready digital twin that renders in real time, ray traces the full FoV, and provides collision geometry.",
+      "authors": [
+        "Allen Tu",
+        "Meher Gitika Karumuri",
+        "Shifan Zhu",
+        "Hailing Wang",
+        "Yen-Liang Lin",
+        "David Held",
+        "Matthias Zwicker",
+        "Tom Goldstein"
+      ],
+      "date": "2026-10-27",
+      "updated": "2026-10-27T18:32:45Z",
+      "url": "https://arxiv.org/abs/2610.37818v1",
+      "source": "arxiv",
+      "categories": [
+        "cs.CV",
+        "cs.GR",
+        "cs.RO"
+      ],
+      "hit_dimensions": [
+        "deployment",
+        "resources"
+      ],
+      "date_found": "2026-10-30",
+      "review_status": "pending",
+      "review_changed_at": "2026-10-30T01:59:58.596420+00:00"
+    },
+    {
+      "id": "2610.37799",
+      "version": "v1",
+      "title": "DexSuite: An All-in-One Framework for Dexterous Manipulation Across Arms, Hands, and Tasks",
+      "abstract": "Human-level dexterity remains a central open problem in robotics, yet few simulation frameworks cover the full workflow of dexterous manipulation, from setting up a robot to collecting dexterous demonstrations and evaluating policies. We present DexSuite, an all-in-one simulation framework for dexterous manipulation built on the Genesis simulator. DexSuite provides 30 tasks and assembles its 10 arms and 12 end-effectors, from parallel-jaw grippers to dexterous hands, into more than 100 single-arm robots and thousands of bimanual pairs. It also ships a standardized environment API, integrated teleoperation, and simulated tactile sensing. Moreover, we define a benchmark of 16 task-embodiment pairs spanning diverse contact complexities and horizons, and release a dataset of 4,700 successful episodes in simulation from human teleoperation, scripted experts, and learned policies. We release DexSuite as open source and hope others will build on it. Videos and datasets are available at https://dexsuiteorg.github.io",
+      "authors": [
+        "Anas Houssaini",
+        "Hugo He",
+        "Junming Shi",
+        "Amin Abyaneh",
+        "Ricardo Chahine",
+        "Shuo Wen",
+        "Mohamad H. Danesh",
+        "Charles-Étienne Fréchette",
+        "Mariana Sosa Guzman",
+        "Mathias Desrochers",
+        "Rayan Houssaini",
+        "Adam Landa",
+        "Theophile Soulie",
+        "Charlotte Morissette",
+        "Annie Tims",
+        "Martino Russi",
+        "Jonathan Lussier",
+        "Gregory Dudek",
+        "Doina Precup",
+        "Julen Urain",
+        "Hsiu-Chin Lin",
+        "David Meger"
+      ],
+      "date": "2026-10-27",
+      "updated": "2026-10-27T18:21:34Z",
+      "url": "https://arxiv.org/abs/2610.37799v1",
+      "source": "arxiv",
+      "categories": [
+        "cs.RO"
+      ],
+      "hit_dimensions": [
+        "deployment",
+        "resources"
+      ],
+      "date_found": "2026-10-30",
+      "review_status": "pending",
+      "review_changed_at": "2026-10-30T01:59:58.596420+00:00"
+    },
+    {
+      "id": "2610.38744",
+      "version": "v1",
+      "title": "AtomTree: A Hierarchical Framework for State-Aware Embodied Instruction Following with LLMs",
+      "abstract": "Embodied instruction following in interactive environments requires agents to interpret natural language commands and complete long-horizon tasks. Existing planners either rely on large labeled trajectories, or use few-shot and zero-shot LLM prompting that produces a whole plan in a single serial reasoning process. These approaches depend on linguistic common sense, commit to a plan from the initial instruction, and only update after failures, which weakens robustness and state awareness. We present AtomTree, a hierarchical framework for state-aware task planning with LLMs. AtomTree incrementally builds a tree of subgoals and actions, where the LLM decides at each step, from the current symbolic state, whether to further decompose or to output a grounded low-level action. A lightweight memory module summarizes past outcomes for reuse in later decisions. When a low-level action stalls, AtomTree triggers hierarchical backtracking replanning to return to the parent node and regenerate the subtree plan from the latest state, preventing continued drift along an incorrect trajectory. In zero-shot evaluation on the ALFRED benchmark, AtomTree outperforms prior LLM-based planners. Project page: https://zhaihaotian.github.io/atomtree-website/.",
+      "authors": [
+        "Haotian Zhai",
+        "Tianming Sha",
+        "Junnan Li"
+      ],
+      "date": "2026-10-28",
+      "updated": "2026-10-28T19:30:40Z",
+      "url": "https://arxiv.org/abs/2610.38744v1",
+      "source": "arxiv",
+      "categories": [
+        "cs.RO",
+        "cs.AI",
+        "cs.CL"
+      ],
+      "hit_dimensions": [
+        "resources"
+      ],
+      "date_found": "2026-10-30",
+      "review_status": "pending",
+      "review_changed_at": "2026-10-30T01:59:58.596420+00:00"
+    },
+    {
+      "id": "2610.38443",
+      "version": "v1",
+      "title": "Skeleton-Guided Geometry-Aware Auto-Labeling for Robotic Grasping: From 4-DoF Learning to 6-DoF Execution",
+      "abstract": "Robotic grasping relies on large manually annotated datasets, which are costly to create. We introduce a straight-skeleton-based algorithm for generating two-finger grasp keypoints and identifying regions suitable for stable, feasible grasps. Our automated pipeline produces consistent grasp annotations without human intervention. We also propose the Skeleton-based Generative Grasp Convolutional Neural Network (SkelGG-CNN), a 4-DoF architecture that learns geometric grasp features from skeleton-based guidance. To extend auto-labeling to 6-DoF grasping, we develop a generalized quasi-3D skeletonization algorithm that operates directly on point clouds. Using automatically generated 4-DoF labels, SkelGG-CNN achieves accuracies of 95.42%, 96.55%, and 97.1% on Jacquard V1, Jacquard V2, and Cornell, respectively. On the GraspNet novel split, 6-DoF auto-labeling achieves an average precision of 18.33, comparable to state-of-the-art model-based approaches. In simulation, the 6-DoF method achieves success rates of 98.4% on Dex-Net and 89.1% on EGAD!. Real-world experiments with a Delta parallel robot show success rates of 97.4% on single household objects and 95.0% in cluttered scenes, outperforming state-of-the-art methods without domain adaptation. The 4-DoF pipeline adapts across environments and produces annotations approaching human-level precision, enabling efficient training of lightweight models on small datasets. The generalized 6-DoF method provides scalable, geometry-aware annotations for cluttered 3D scenes.",
+      "authors": [
+        "Ali Sabzejou",
+        "Farbod Azimmohseni",
+        "Mehdi Tale Masouleh",
+        "Ahmad Kalhor"
+      ],
+      "date": "2026-10-28",
+      "updated": "2026-10-28T08:22:11Z",
+      "url": "https://arxiv.org/abs/2610.38443v1",
+      "source": "arxiv",
+      "categories": [
+        "cs.RO"
+      ],
+      "hit_dimensions": [
+        "resources"
+      ],
+      "date_found": "2026-10-30",
+      "review_status": "pending",
+      "review_changed_at": "2026-10-30T01:59:58.596420+00:00"
+    },
+    {
+      "id": "2610.38320",
+      "version": "v1",
+      "title": "SSQA: Sibling-Selective Quadtree Attention for Hierarchical Modeling in Perception Tasks",
+      "abstract": "Perception tasks for navigation in robotics, including aerial platforms such as drones and autonomous driving systems, are inherently structured. Drone-mounted cameras typically capture sky above, terrain below, and obstacles or man-made structures in between, while driving data often contains organized road layouts, lane markings, and surrounding agents. Motivated by these axis-aligned structural priors, we note that such information is typically more structured than in generic image tasks. We hypothesize that processing information in a quadtree-esque manner can not only model features effectively in a hierarchical manner, but also offers an efficient linear-time alternative to vanilla attention mechanisms, which run in quadratic time. In this paper, we propose Sibling-Selective Quadtree Attention (SSQA), which models image tokens hierarchically as a structured, full quadtree. We show analytical complexity analysis that guarantees linear-time feature modeling, in addition to empirical experiments comparing inference speeds with other popular modeling approaches, such as Mamba 2 and Quadtree Attention. Our results, benchmarked across several tasks, show that we achieve results at least as good, if not notably better, as others at a fraction of the computational costs.",
+      "authors": [
+        "Yufan Chen",
+        "Arnav Bali",
+        "Angela Liu",
+        "Laura Zheng",
+        "Ming C. Lin"
+      ],
+      "date": "2026-10-28",
+      "updated": "2026-10-28T06:14:06Z",
+      "url": "https://arxiv.org/abs/2610.38320v1",
+      "source": "arxiv",
+      "categories": [
+        "cs.CV"
+      ],
+      "hit_dimensions": [
+        "resources"
+      ],
+      "date_found": "2026-10-30",
+      "review_status": "pending",
+      "review_changed_at": "2026-10-30T01:59:58.596420+00:00"
+    },
+    {
+      "id": "2610.38266",
+      "version": "v1",
+      "title": "Recursive Self-Improvement in Physical AI: Mechanisms, Evidence, and Evaluation",
+      "abstract": "Embodied systems can update policies, world models, skills, and executable programs from deployment experience, allowing one interaction to benefit later tasks. When a system also revises and reuses its data-acquisition, feedback, or learning procedures, experience changes the process that produces capability, introducing recursive self-improvement. This paper surveys research in physical AI through the connection between persistent capability and its improvement process. We first explain the functional distinction between learner updates and improvers, then compare policy learning, imagined experience, memory and skill accumulation, and executable harnesses. These approaches connect to revisions of curricula, rewards, and research programs in different ways. Contact validity, recovery, retention, and resource costs determine whether the resulting gains accumulate during continued deployment. An L0-L3 rubric distinguishes task-local adaptation, persistent capability gain, inherited process revision, and verified improver gain. Representative benchmarks and within-study contrasts relate these distinctions to existing results. We further propose common-data and interactive comparisons that evaluate reference and revised improvers from shared learner starts, separating the use of experience from its acquisition. This perspective connects the diverse methods, physical operating conditions, and evaluation evidence, underpinning embodied RSI. A comprehensive list of studies in this survey is available at https://github.com/nkd-lkz/physical-ai-rsi-survey.",
+      "authors": [
+        "Xiaofeng Han",
+        "Kaize Luo",
+        "Zenghuang Fu",
+        "Zichong Zhu",
+        "Zhe Feng",
+        "Changwei Wang",
+        "Rongtao Xu",
+        "Weiliang Meng",
+        "Xiaopeng Zhang"
+      ],
+      "date": "2026-10-28",
+      "updated": "2026-10-28T04:34:16Z",
+      "url": "https://arxiv.org/abs/2610.38266v1",
+      "source": "arxiv",
+      "categories": [
+        "cs.RO"
+      ],
+      "hit_dimensions": [
+        "resources"
+      ],
+      "date_found": "2026-10-30",
+      "review_status": "pending",
+      "review_changed_at": "2026-10-30T01:59:58.596420+00:00"
+    },
+    {
+      "id": "2610.38248",
+      "version": "v1",
+      "title": "MATCH: Execution-Aware Hierarchical Reinforcement Learning for Vision-and-Language Navigation in Continuous Environment",
+      "abstract": "Vision-and-Language Navigation in Continuous Environments (VLN-CE) requires instruction-consistent planning and reliable execution under collision constraints. Yet many hierarchical approaches optimize the planner while keeping execution fixed. We introduce MATCH, a framework that jointly learns a language-conditioned planner and a goal-conditioned primitive-action executor. An execution-aware topological graph represents start-dependent execution options and integrates executor value estimates with realized outcome memory, enabling the planner to select execution requests and refine their targets through bounded continuous offsets. A transition-aware dense macro reward balances ordered progress along the reference route against execution residual, encouraging executable requests without substituting local success for instruction following. A staged curriculum culminates in synchronized on-policy updates, with the executor learning on planner-generated requests and the planner adapting its requests to the executor's current behavior. With 0.5B parameters, MATCH achieves state-of-the-art performance on the R2R-CE and RxR-CE benchmarks. Preliminary real-robot deployments further demonstrate its practical potential.",
+      "authors": [
+        "Shuhao Ye",
+        "Yufei Wei",
+        "Demao Wang",
+        "Shichao Zhai",
+        "Rong Xiong",
+        "Yue Wang"
+      ],
+      "date": "2026-10-28",
+      "updated": "2026-10-28T03:56:17Z",
+      "url": "https://arxiv.org/abs/2610.38248v1",
+      "source": "arxiv",
+      "categories": [
+        "cs.RO"
+      ],
+      "hit_dimensions": [
+        "resources"
+      ],
+      "date_found": "2026-10-30",
+      "review_status": "pending",
+      "review_changed_at": "2026-10-30T01:59:58.596420+00:00"
+    },
+    {
+      "id": "2610.38141",
+      "version": "v1",
+      "title": "SKiD-SLAM: Resource-Aware Distributed Multi-Robot LiDAR SLAM for Planetary Missions with Field Deployments at Analog Sites",
+      "abstract": "Future planetary exploration missions require teams of robots to collaboratively map unknown environments under severe communication limits, constrained onboard computation, and no central infrastructure. In this field report, we present SKiD-SLAM, a distributed multi-robot LiDAR simultaneous localization and mapping (SLAM) system for such environments, and report its deployment across two mission concepts: cave exploration and scientific surface exploration. We survey the communication and computation budgets of actual planetary missions and select modules that fit these budgets for inter-robot place recognition, relative pose estimation, and distributed trajectory fusion. Before field deployment, we verify the assembled system on public datasets resembling planetary environments and in a simulator built on NASA JPL's Open Source Rover. We then validate SKiD-SLAM through field deployments in South Korea: a team of wheeled rovers explores the Majang lava-tube cave on Jeju Island, and quadruped robots carry out a crater-and-rock science scenario on a planetary analog terrain at the Korea Institute of Civil Engineering and Building Technology (KICT) in Yeoncheon. Across both deployments, SKiD-SLAM reliably performed distributed multi-robot LiDAR SLAM within a 250 kbps inter-robot communication budget, demonstrating its feasibility under challenging field conditions. Supplementary materials, including code and field data, are available at https://sparolab.github.io/research/skid_slam/.",
+      "authors": [
+        "Hogyun Kim",
+        "Juwon Kim",
+        "Dongjin Cho",
+        "Jiwon Choi",
+        "Geonmo Yang",
+        "Seokhwan Jeong",
+        "Jiyun Lee",
+        "Miryeong Park",
+        "Hyungtae Lim",
+        "Younggun Cho"
+      ],
+      "date": "2026-10-28",
+      "updated": "2026-10-28T01:24:37Z",
+      "url": "https://arxiv.org/abs/2610.38141v1",
+      "source": "arxiv",
+      "categories": [
+        "cs.RO"
+      ],
+      "hit_dimensions": [
+        "resources"
+      ],
+      "date_found": "2026-10-30",
+      "review_status": "pending",
+      "review_changed_at": "2026-10-30T01:59:58.596420+00:00"
+    },
+    {
+      "id": "2610.37926",
+      "version": "v1",
+      "title": "GARDEN: Generalist Autonomous Reward Design Through Evidence Navigation for Cooperative Multi-Agent Reinforcement Learning",
+      "abstract": "Cooperative multi-agent reinforcement learning (MARL) enables teams of agents, such as robots and autonomous vehicles, to learn coordinated behavior, but what such teams learn is largely determined by their reward function. Because task success alone provides too little guidance for learning, intermediate rewards are usually designed by hand, and this effort must often be repeated whenever the environment or the team changes. Large language models (LLMs) can automate the effort by writing reward functions as code, yet the resulting rewards are typically designed and tested in a single setting. To enable their reuse across settings, GARDEN (Generalist Autonomous Reward Design through Evidence Navigation) is proposed, in which one reward program is developed for a family of related scenarios and transferred, unchanged, to scenarios that were not available during its design. During development, environment code, training records, and agent behavior are investigated by an LLM reward engineer, and draft rewards are tested in trial training runs, while the learning algorithm and the rule for selecting the final reward are held fixed. On unseen scenarios of the Overcooked and SMAX benchmarks, task returns were increased by 58.2% and 52.5% over the default rewards on two kitchen layouts, and the mean win rate in two combat scenarios was raised from 51.0% to 89.9%. Under matched candidate and probe budgets, this exceeded the 84.2% and 79.2% obtained with fixed diagnostic feedback and Eureka-inspired reward reflection. These results show that a single autonomously engineered reward can be reused effectively across related cooperative scenarios.",
+      "authors": [
+        "Dogan Urgun"
+      ],
+      "date": "2026-10-27",
+      "updated": "2026-10-27T20:11:29Z",
+      "url": "https://arxiv.org/abs/2610.37926v1",
+      "source": "arxiv",
+      "categories": [
+        "cs.AI",
+        "cs.MA",
+        "eess.SY"
+      ],
+      "hit_dimensions": [
+        "resources"
+      ],
+      "date_found": "2026-10-30",
+      "review_status": "pending",
+      "review_changed_at": "2026-10-30T01:59:58.596420+00:00"
     }
   ]
 }
