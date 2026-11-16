@@ -111784,8 +111784,8 @@
     },
     {
       "id": "2610.24349",
-      "version": "v1",
-      "title": "FlashRT-PAI: Fast Kernels Are Not Fast Pipelines for Physical AI Inference",
+      "version": "v2",
+      "title": "FlashRT-PAI: Fast Kernels Are Not Fast Pipelines for Physical AI",
       "abstract": "Vision-language-action (VLA), video-action (VA), and world action models (WAMs) form the backbone of modern physical AI systems, yet their real-time single-batch inference remains a defining bottleneck. Latency is dominated not by individual kernel computation, but by system-level overhead: thousands of short kernel launches, intermediate data movement across operator boundaries, and redundant recomputation across consecutive decisions. General-purpose graph compilers cannot address these costs, as they optimize individual calls in isolation and lack visibility into cross-call state semantics and global pipeline structure. We present FLASHRT-PAI, a low-latency inference engine built around model-hardware pipeline co-design rather than isolated kernel optimization. FLASHRT-PAI combines three core mechanisms: deep kernel fusion with launch overlap eliminates inter-operator boundaries and launch gaps; an execution contract formalizes the pipeline's stage DAG, update rates, and named buffers to enable cross-decision state reuse and selective refresh; and execution-state capsules enable fast snapshot, restore, and fork of persistent pipeline state. The system also supports drop-in acceleration of unmodified PyTorch models via parity- and latency-gated kernel replacement. Evaluation covers six policies on RTX 5090 and four on Jetson AGX Thor. At matched 16-bit precision, FLASHRT-PAI is 1.3-3.7x faster than official compiled paths. Combining pipeline co-design with reduced precision delivers 3.38-12.66x speedup over official eager implementations. In LIBERO-10, four-bit pi0.5 achieves 94.04% success on Thor and 93.32% on RTX 5090, compared with 92.4% for the measured official FP16 reference. FLASHRT-PAI is open source, distributed via Hugging Face Kernel Hub, and its opt-in pi0.5 kernels have been adopted into the LeRobot framework.",
       "authors": [
         "Liang Su",
@@ -111795,8 +111795,8 @@
         "Teresa Lv"
       ],
       "date": "2026-10-17",
-      "updated": "2026-10-17T00:35:58Z",
-      "url": "https://arxiv.org/abs/2610.24349v1",
+      "updated": "2026-11-12T23:30:40Z",
+      "url": "https://arxiv.org/abs/2610.24349v2",
       "source": "arxiv",
       "categories": [
         "cs.AI"
@@ -111806,7 +111806,7 @@
       ],
       "date_found": "2026-10-20",
       "review_status": "pending",
-      "review_changed_at": "2026-10-20T01:06:36.774154+00:00"
+      "review_changed_at": "2026-11-16T02:14:17.001966+00:00"
     },
     {
       "id": "2610.24885",
@@ -178458,6 +178458,404 @@
       "date_found": "2026-11-14",
       "review_status": "pending",
       "review_changed_at": "2026-11-14T02:30:04.018502+00:00"
+    },
+    {
+      "id": "2611.17549",
+      "version": "v1",
+      "title": "Talk to Act: A Synthetic Multi-Turn Dialogue Benchmark for Human Intent Extraction and Action Planning in Robotics",
+      "abstract": "Multi-turn conversational human-robot interaction (HRI) continues to be a challenging problem in robotics, as many existing systems rely on rigid, command-driven interfaces that can be unintuitive for users. Recent advances in Large Language Models (LLMs) provide a promising direction, given their ability to process natural language, generate structured outputs, and support tool-based reasoning, all of which are relevant for interpreting user intent in robotic settings. However, progress in this area is constrained by the limited availability of datasets and benchmarks that capture the nuances of real-world human communication, such as multi-turn dialogue, ambiguity, and context-dependent requests. In this work, we present a synthetically generated multi-turn dialogue dataset for HRI, annotated with action intents, object references, and task plans across a range of scenarios and user personas. Our primary focus is on evaluating the capability of small, open-weight language models for robotic tasks, particularly in settings where local deployment and efficiency are important. To this end, we frame intent extraction as a tool-calling problem where each predicted action corresponds to a structured function call with arguments grounded in the dialogue and benchmark models ranging from 270M to 8B parameters on their ability to perform intent extraction and action planning without task-specific fine-tuning. Our results show that these models can achieve reasonable performance on the task even at relatively small scales and without any task-specific fine-tuning. This suggests that compact, locally deployable models already provide a useful baseline for conversational robotic systems. We expect that task-specific fine-tuning and more realistic training data will enhance performance further and make such models increasingly suitable for real-world robotic applications.",
+      "authors": [
+        "Deepu Krishnareddy",
+        "Mohammad Haziq Khan",
+        "Michael Danner",
+        "Matthias Rätsch"
+      ],
+      "date": "2026-11-12",
+      "updated": "2026-11-12T22:11:38Z",
+      "url": "https://arxiv.org/abs/2611.17549v1",
+      "source": "arxiv",
+      "categories": [
+        "cs.RO"
+      ],
+      "hit_dimensions": [
+        "adaptation",
+        "resources"
+      ],
+      "date_found": "2026-11-16",
+      "review_status": "pending",
+      "review_changed_at": "2026-11-16T02:14:17.001966+00:00"
+    },
+    {
+      "id": "2605.13276",
+      "version": "v3",
+      "title": "D-VLA: A High-Concurrency Distributed Asynchronous Reinforcement Learning Framework for Vision-Language-Action Models",
+      "abstract": "The rapid evolution of Embodied AI has enabled Vision-Language-Action (VLA) models to excel in multimodal perception and task execution. However, applying Reinforcement Learning (RL) to these massive models in large-scale distributed environments faces severe systemic bottlenecks, primarily due to the resource conflict between high-fidelity physical simulation and the intensive VRAM/bandwidth demands of deep learning. This conflict often leaves overall throughput constrained by execution-phase inefficiencies. To address these challenges, we propose D-VLA, a high-concurrency, low-latency distributed RL framework for large-scale embodied foundation models. D-VLA introduces \"Plane Decoupling,\" physically isolating high-frequency training data from low-frequency weight control to eliminate interference between simulation and optimization. We further design a four-thread asynchronous \"Swimlane\" pipeline, enabling full parallel overlap of sampling, inference, gradient computation, and parameter distribution. Additionally, a dual-pool VRAM management model and topology-aware replication resolve memory fragmentation and optimize communication efficiency. Experiments on benchmarks like LIBERO show that D-VLA significantly outperforms mainstream RL frameworks in throughput and sampling efficiency for billion-parameter VLA models. In trillion-parameter scalability tests, our framework maintains exceptional stability and linear speedup, providing a robust system for high-performance general-purpose embodied agents.",
+      "authors": [
+        "Yucheng Guo",
+        "Yongjian Guo",
+        "Zhong Guan",
+        "Wen Huang",
+        "Haodong Yue",
+        "Shuai Di",
+        "Junwu Xiong",
+        "Yicheng Gong",
+        "Xi Xiao"
+      ],
+      "date": "2026-05-13",
+      "updated": "2026-11-13T06:34:28Z",
+      "url": "https://arxiv.org/abs/2605.13276v3",
+      "source": "arxiv",
+      "categories": [
+        "cs.AI",
+        "cs.RO"
+      ],
+      "hit_dimensions": [
+        "resources",
+        "world_action_models"
+      ],
+      "date_found": "2026-11-16",
+      "review_status": "pending",
+      "review_changed_at": "2026-11-16T02:14:17.001966+00:00"
+    },
+    {
+      "id": "2608.29583",
+      "version": "v2",
+      "title": "Drive the Thoughts: Runtime Monitoring of VLA Reasoning-Trajectory Consistency",
+      "abstract": "While machine learning models help autonomous vehicles (AVs) navigate complex environments, their black-box nature complicates validation and verification (V&V). Vision-language-action (VLA) models offer a unique opportunity: alongside trajectories, they generate an explicit chain-of-thought (CoT) explaining their decisions. We posit that this CoT can serve as a candidate specification to cross-check trajectories and expose unsafe behavior. To assess this, we curate DriveAlignBench, a dataset of 150 CoT-trajectory pairs from NVIDIA's Alpamayo 1.5 VLA, manually annotated for CoT reliability, CoT-trajectory consistency, and trajectory safety. We find that 33.3% of CoTs are unreliable, and among reliable CoTs, 26% have inconsistent trajectories. To detect these cases, we propose integrating a CoT-trajectory consistency check into a runtime monitor. This check is nontrivial because CoTs express open-vocabulary, scene-relative maneuvers, while trajectories are low-level ego-motion sequences whose semantics depend on road geometry and motion context. To bridge this gap, we develop a family of automated consistency monitors. The strongest, the lane-aware monitor, adds lane-relative evidence to the input of the judge model scoring consistency. This raises F1 across all four evaluated judges from 0.56-0.62 with raw waypoints to 0.65-0.82, showing that evidence representation improves detection across judges. Moreover, for reliable CoTs, inconsistency is associated with unsafe behavior: 27% of human-labeled inconsistent trajectories are unsafe compared to 3% of consistent ones, and the lane-aware monitor flags most of these unsafe cases. We release DriveAlignBench, the monitor implementations, and per-run results at https://github.com/less-lab-uva/drive-the-thoughts.",
+      "authors": [
+        "Tian Yu",
+        "Lu Feng",
+        "Sebastian Elbaum"
+      ],
+      "date": "2026-08-30",
+      "updated": "2026-11-13T06:14:49Z",
+      "url": "https://arxiv.org/abs/2608.29583v2",
+      "source": "arxiv",
+      "categories": [
+        "cs.SE"
+      ],
+      "hit_dimensions": [
+        "world_action_models"
+      ],
+      "date_found": "2026-11-16",
+      "review_status": "pending",
+      "review_changed_at": "2026-11-16T02:14:17.001966+00:00"
+    },
+    {
+      "id": "2611.17775",
+      "version": "v1",
+      "title": "Beyond Prediction Gain: LASR as a Metric for Action-Grounded Latents in World Models",
+      "abstract": "World models that support planning, control, and interpretable reasoning require latent representations that genuinely encode action. Yet the large-scale video data from which such models are learned overwhelmingly lack action annotations. Latent-action models infer action-like variables from observation sequences, enabling action-aware learning from unlabeled videos or trajectories. A fundamental concern, however, remains: a latent that improves future prediction may simply encode the current state, episode progress, task identity, or other predictive shortcuts. Existing evaluation practices---reconstruction loss, rollout fidelity, action recovery, or downstream performance---cannot isolate this distinction. We introduce the Latent Action Support Ratio (LASR), a dimensionless metric that measures, under offline evaluation on held-out data, whether a learned latent provides predictive support for action-related targets beyond the current state and non-action alternatives. LASR provides two complementary summaries: GeoLASR captures typical support, while WorstLASR identifies the weakest case. We instantiate the LASR benchmark with recorded actions and corresponding physical state changes as targets, episode-held-out splits, one predictor type for all comparisons, and positive and negative controls. Experiments on recorded robot manipulation data and a matched multi-task panel demonstrate that LASR detects known action information, rejects representative non-action shortcuts, and enables graded comparisons among imperfect latent representations. We further use LASR to train and audit a lightweight residual adapter, obtaining descriptively better point estimates whose uncertainty is assessed with paired comparisons. LASR thus provides a principled offline protocol for measuring action-related predictive support in world-model latents.",
+      "authors": [
+        "Yu Zhou",
+        "Changsong Lei",
+        "Yixiang Wei",
+        "Kairui Wen",
+        "Huankun Sheng",
+        "Ming Li",
+        "Yeying Fan",
+        "Yu-Hui Wen",
+        "Yong-Jin Liu"
+      ],
+      "date": "2026-11-13",
+      "updated": "2026-11-13T05:35:37Z",
+      "url": "https://arxiv.org/abs/2611.17775v1",
+      "source": "arxiv",
+      "categories": [
+        "cs.RO",
+        "cs.LG"
+      ],
+      "hit_dimensions": [
+        "resources",
+        "world_action_models"
+      ],
+      "date_found": "2026-11-16",
+      "review_status": "pending",
+      "review_changed_at": "2026-11-16T02:14:17.001966+00:00"
+    },
+    {
+      "id": "2511.21542",
+      "version": "v3",
+      "title": "E0: Expressive Fine-Grained Discrete Action Prediction for Vision-Language-Action Models via Tweedie Discrete Diffusion",
+      "abstract": "Vision-Language-Action (VLA) models offer a unified framework for robotic manipulation by integrating visual perception, language understanding, and control generation. However, existing VLA systems still struggle to generalize across diverse tasks, scenes, and camera viewpoints, and often produce coarse or unstable actions. We argue that these limitations are closely tied to the structural properties of actions in VLA settings, including the inherent multi-peaked nature of action distributions, the token-based symbolic reasoning of pretrained VLM/VLA backbones, and the effective finite resolution imposed by real-world robotic control. Motivated by these properties, we introduce E0, a tweedie discrete diffusion framework that formulates action generation as iterative denoising over quantized action tokens. By operating in a discrete action space with a principled diffusion process, E0 naturally aligns with token-based reasoning, supports fine-grained yet executable action control, and avoids the distributional mismatch of masking-based discrete diffusion. Experiments on LIBERO, VLABench, ManiSkill, and a real-world Franka arm demonstrate that E0 achieves state-of-the-art performance across diverse environments, outperforming strong baselines by 8.1% on average.",
+      "authors": [
+        "Zhihao Zhan",
+        "Jiaying Zhou",
+        "Likui Zhang",
+        "Qinhan Lyu",
+        "Hao Liu",
+        "Weizheng Li",
+        "Jusheng Zhang",
+        "Ziliang Chen",
+        "Tianshui Chen",
+        "Ruifeng Zhai",
+        "Keze Wang",
+        "Liang Lin",
+        "Guangrun Wang"
+      ],
+      "date": "2025-11-26",
+      "updated": "2026-11-13T03:34:17Z",
+      "url": "https://arxiv.org/abs/2511.21542v3",
+      "source": "arxiv",
+      "categories": [
+        "cs.RO",
+        "cs.AI",
+        "cs.CV",
+        "cs.LG"
+      ],
+      "hit_dimensions": [
+        "world_action_models"
+      ],
+      "date_found": "2026-11-16",
+      "review_status": "pending",
+      "review_changed_at": "2026-11-16T02:14:17.001966+00:00"
+    },
+    {
+      "id": "2611.17626",
+      "version": "v1",
+      "title": "Joint World Action Models through Differentiable Trajectory Optimization",
+      "abstract": "Joint world action models (WAMs) generate future actions and states together, modeling world-action trajectories rather than actions alone. However, trajectory imitation does not ensure that these trajectories are task-effective or consistent with dynamics. We present \\textbf{world action trajectory optimization (WATO)}, which optimizes generated actions and future states jointly for control. WATO uses both as references in a dynamics-constrained trajectory optimization problem and differentiates the task loss through the optimized trajectory to train the generator. This makes generated trajectories task-aware and dynamics-consistent while using trajectory optimization only during training. At deployment, WATO directly generates candidate trajectories and ranks them with a world model, without iterative trajectory optimization. Across $7$ visual control environments, WATO improves average success from $79.9\\%$ for the imitation joint WAM to $91.7\\%$, outperforming strong model-based, goal-conditioned RL, and generative control baselines. Compared with cross-entropy method (CEM), WATO is on average $11.5\\times$ faster and uses $600.5\\times$ fewer world model evaluations at deployment.",
+      "authors": [
+        "Mintae Kim",
+        "Koushil Sreenath"
+      ],
+      "date": "2026-11-13",
+      "updated": "2026-11-13T00:54:12Z",
+      "url": "https://arxiv.org/abs/2611.17626v1",
+      "source": "arxiv",
+      "categories": [
+        "cs.LG"
+      ],
+      "hit_dimensions": [
+        "world_action_models"
+      ],
+      "date_found": "2026-11-16",
+      "review_status": "pending",
+      "review_changed_at": "2026-11-16T02:14:17.001966+00:00"
+    },
+    {
+      "id": "2611.17394",
+      "version": "v1",
+      "title": "Agentic-Teacher: An Agentic Data Engine for Failure-Driven VLA Post-Training",
+      "abstract": "Improving a pretrained vision-language-action (VLA) model requires demonstrations that address its weaknesses and provide effective supervision for learning. Coding agents can autonomously generate demonstrations through environment interaction, yet successful execution alone does not ensure effective supervision for VLA learning. We introduce Agentic-Teacher, an autonomous data engine for failure-driven VLA post-training. Given a VLA checkpoint, a task specification, and configured environment tools, the engine analyzes failed rollouts, selects intervention states, and iteratively develops closed-loop code policies through execution feedback. Validated policies become reusable demonstration generators that collect successful continuations from states where the VLA struggles. To make these demonstrations suitable for learning, Agentic-Teacher introduces temporally correlated action noise to broaden state-action coverage, removes idle frames while preserving gripper transitions, and filters trajectories using the frozen base model's flow-matching loss. The resulting demonstrations are combined with successful VLA rollouts for post-training, yielding an updated policy that operates without coding-agent assistance. Agentic-Teacher thus connects the weaknesses of a target VLA to both the generation and curation of its training data. In simulation, it improves $π_0$ success rates from 79.4% to 87.8% on LIBERO-10, from 80.4% to 90.6% on MetaWorld-10, and from 0% to 30.0% across three RoboCasa tasks.",
+      "authors": [
+        "Gongyue Teng",
+        "Yuqing Xie",
+        "Yixian Zhang",
+        "Feng Gao",
+        "Shu'ang Yu",
+        "Jiaji Rao",
+        "Sukai Wang",
+        "Guanghui Ren",
+        "Ya Zhang",
+        "Maoqing Yao",
+        "Yu Wang",
+        "Chao Yu",
+        "Xinlei Chen"
+      ],
+      "date": "2026-11-12",
+      "updated": "2026-11-12T15:43:14Z",
+      "url": "https://arxiv.org/abs/2611.17394v1",
+      "source": "arxiv",
+      "categories": [
+        "cs.RO"
+      ],
+      "hit_dimensions": [
+        "world_action_models"
+      ],
+      "date_found": "2026-11-16",
+      "review_status": "pending",
+      "review_changed_at": "2026-11-16T02:14:17.001966+00:00"
+    },
+    {
+      "id": "2507.10087",
+      "version": "v2",
+      "title": "Foundation Model Driven Robotics: A Comprehensive Review",
+      "abstract": "The rapid emergence of foundation models, particularly large language models and vision-language models, has introduced a transformative paradigm in robotics. The models offer powerful capabilities in semantic understanding, high-level reasoning, and cross-modal generalization, enabling significant advances in perception, planning, control, and human-robot interaction. This critical review provides a structured synthesis of recent developments and organizes applications into four directions: simulation-driven robotics, open-world operation, sim-to-real transfer, and adaptable robotic systems. Unlike existing surveys that emphasize isolated capabilities, this work highlights integrated, system-level strategies and evaluates their practical feasibility in real-world environments. Key enabling trends such as procedural scene generation, policy generalization, and multimodal reasoning are discussed alongside core bottlenecks, including limited embodiment, lack of multimodal data, safety risks, and computational constraints. Through this lens, this paper identifies both the architectural strengths and critical limitations of foundation model-based robotics, highlighting open challenges in real-time operation, grounding, resilience, and trust. The review concludes with a roadmap of proposed future research directions for bridging semantic reasoning and physical intelligence through more robust, interpretable, and embodied models.",
+      "authors": [
+        "Muhammad Tayyab Khan",
+        "Ammar Waheed",
+        "Seung Ki Moon"
+      ],
+      "date": "2025-07-14",
+      "updated": "2026-11-13T02:58:30Z",
+      "url": "https://arxiv.org/abs/2507.10087v2",
+      "source": "arxiv",
+      "categories": [
+        "cs.RO"
+      ],
+      "hit_dimensions": [
+        "deployment"
+      ],
+      "date_found": "2026-11-16",
+      "review_status": "pending",
+      "review_changed_at": "2026-11-16T02:14:17.001966+00:00"
+    },
+    {
+      "id": "2608.19372",
+      "version": "v2",
+      "title": "The Missing Touch: Sensing and Displaying Localized Contact Geometry Brings Teleoperation Closer to Human Dexterity",
+      "abstract": "A fundamental challenge in robotic teleoperation is enabling an operator to control a remote robot as effortlessly and intuitively as their own hands. Despite the growing use of teleoperation to collect demonstrations for training autonomous robot policies, teleoperated performance still falls significantly short of human dexterity, even for basic tasks. Here, we present evidence that a key factor contributing to this performance gap is the absence of localized tactile feedback. We equip a two-degree-of-freedom (DoF) bilateral force-feedback telemanipulator with a vision-based tactile sensor and a 32-pixel tactile display, allowing us to capture spatial contact patterns on the robot finger and render them on the operator's fingertip. In teleoperated button-discrimination and peg-rolling tasks, we demonstrate that reproducing spatially distributed contact information brings teleoperated movements closer to natural human behavior through fewer unnecessary motions and task completion steps, significantly reducing task completion time and producing more consistent demonstrations across trials and operators. We further show that these improvements in human demonstrations can propagate to autonomous policies: policies trained on tactile-enhanced demonstrations exhibited similar reductions in both task completion time and deviation from natural human behavior. Together, these results establish spatially distributed tactile feedback as an important component of dexterous robotic teleoperation and demonstrate its potential to improve safety-critical teleoperation and enable more humanlike demonstrations for training autonomous robot policies.",
+      "authors": [
+        "Rohan Kota",
+        "Gregory Reardon",
+        "J. Edward Colgate"
+      ],
+      "date": "2026-08-19",
+      "updated": "2026-11-13T01:25:12Z",
+      "url": "https://arxiv.org/abs/2608.19372v2",
+      "source": "arxiv",
+      "categories": [
+        "cs.RO"
+      ],
+      "hit_dimensions": [
+        "deployment"
+      ],
+      "date_found": "2026-11-16",
+      "review_status": "pending",
+      "review_changed_at": "2026-11-16T02:14:17.001966+00:00"
+    },
+    {
+      "id": "2611.17598",
+      "version": "v1",
+      "title": "X-Nav Technical Report: Real-World Long-Horizon Indoor-to-Outdoor Navigation on a Humanoid Robot",
+      "abstract": "Long-horizon navigation from indoors to outdoors remains an open problem for humanoid robots: one instruction covers rooms, doors and roads, and the camera moves with the gait. Worken, AGIBOT's measure of productive robot work, depends on robots that reach their workplaces autonomously. We present X-Nav, to our knowledge the first system to take a bipedal humanoid through a language-instructed long-horizon mission from indoors to outdoors. X-Nav covers a pipeline from data to deployment. Its data engine collects navigation data in open-source scenes, in digital twins of deployment sites and on real robots. Its navigation model, MELIOR, takes only RGB images from the robot's built-in camera and comes in two versions: MELIOR-A predicts actions, and MELIOR-N predicts a navigation goal. Its agentic workflow, X-Navarch, turns a brief human instruction into sub-tasks and deploys MELIOR on the robot with explicit target navigation and obstacle avoidance. On the Lingxi X2, X-Nav completes a mission of about a hundred metres from an office lobby to a store in a neighbouring building; LiDAR and odometry are used for target approach and low-level control. The mission is completed with both versions of MELIOR: the robot follows a change of destination and walks through a door from the lobby to the road, and with X-Navarch it also passes static and dynamic obstacles on the route. During deployment, MELIOR is adapted with data collected in a digital twin of the site; the adaptation raises its closed-loop success rate in the twin, and the adapted model is then deployed on the robot at the real site. In addition, MELIOR achieves competitive results on the R2R-CE and RxR-CE benchmarks.",
+      "authors": [
+        "Jiaxin Huang",
+        "Chengxing Lin",
+        "Xiaoyu Luo",
+        "Sirui Chen",
+        "Jingyu Guo",
+        "Aolin Li",
+        "Kairui Chen",
+        "Rui Zhen",
+        "Cheng Wen",
+        "Kerui Gu",
+        "Shunyao Wang",
+        "Zhihui Peng",
+        "Shaoli Huang"
+      ],
+      "date": "2026-11-12",
+      "updated": "2026-11-12T23:38:27Z",
+      "url": "https://arxiv.org/abs/2611.17598v1",
+      "source": "arxiv",
+      "categories": [
+        "cs.RO",
+        "cs.AI",
+        "cs.CV"
+      ],
+      "hit_dimensions": [
+        "deployment",
+        "resources"
+      ],
+      "date_found": "2026-11-16",
+      "review_status": "pending",
+      "review_changed_at": "2026-11-16T02:14:17.001966+00:00"
+    },
+    {
+      "id": "2611.17438",
+      "version": "v1",
+      "title": "Real-Time Diffusion Relighting as a Neural Sensor: Closing the Low-Light Domain Gap for Robotic Perception",
+      "abstract": "Low-light conditions severely degrade robotic perception: object detectors trained on daylight imagery are prone to failure under dark and adverse weather conditions that fall outside of their training distribution. Furthermore, from an efficiency standpoint, existing Low-Light Image Enhancement (LLIE) methods are designed for offline processing and are therefore impractical to integrate into live control loops. To address these issues, we propose to embed a Generative Neural Sensor within the control loop that treats illumination as a generative prior rather than a signal processing problem, enabling task-relevant semantic recovery. We further propose an Real-Time Perceptual Architecture that decouples high-latency semantic recovery from low-latency robotic control. Rather than blocking the control loop, our system runs a large-scale image-to-image diffusion model in a background thread, and is activated only when a drop in detection confidence signals a perceptual uncertainty event, significantly reducing computational overhead. Our method sets a new state-of-the-art performance on the ExDark low-light benchmark with 87.1% mAP, and under adverse weather conditions, significantly boosts detection rates over competing methods. On a navigation task in a closed-loop autonomous driving simulator (CARLA), we achieve a 100% lap completion rate, establishing a simulation-based proof-of-concept for integrating high-latency generative models with standard robotic control autonomy stacks.",
+      "authors": [
+        "Shengjie Xu",
+        "Alexander Gao",
+        "Anshul Rai",
+        "Dae Yeol Lee",
+        "Guan-Ming Su",
+        "Ming C. Lin"
+      ],
+      "date": "2026-11-12",
+      "updated": "2026-11-12T19:10:40Z",
+      "url": "https://arxiv.org/abs/2611.17438v1",
+      "source": "arxiv",
+      "categories": [
+        "cs.CV"
+      ],
+      "hit_dimensions": [
+        "deployment",
+        "resources"
+      ],
+      "date_found": "2026-11-16",
+      "review_status": "pending",
+      "review_changed_at": "2026-11-16T02:14:17.001966+00:00"
+    },
+    {
+      "id": "2611.17730",
+      "version": "v1",
+      "title": "ERA: Error-Resistant Autonomous Object Navigation with Predicted Depth",
+      "abstract": "Depth and 3D foundation models can predict geometry from RGB images, allowing zero-shot object navigation without a depth sensor. However, when predicted depth is mapped as if it came from a sensor, view-dependent errors accumulate in the map, remove exploration goals, and end the search before the agent can observe and correct them. We propose ERA, a training-free object navigation system that replaces the depth sensor with depth predicted from RGB images and poses. ERA follows a paradigm we call Move with Error: movement provides new views that correct map errors, and the corrected map enables further movement. It realizes this paradigm with revisable occupancy and with exploration from reachable viewpoints, which continues the search when no frontier remains, and verifies the target across views before stopping. On three benchmarks, ERA achieves state-of-the-art performance among training-free methods without depth sensors. Its map and exploration components also raise VLFM's success from 10.8% to 61.7% under the same predicted depth. We further deploy ERA on a real robot.",
+      "authors": [
+        "Shunyang Huang",
+        "Shuo Wang",
+        "Wenyuan Xie",
+        "Mingyu Lin",
+        "Yue Ding",
+        "Hongtao Lu"
+      ],
+      "date": "2026-11-13",
+      "updated": "2026-11-13T04:20:36Z",
+      "url": "https://arxiv.org/abs/2611.17730v1",
+      "source": "arxiv",
+      "categories": [
+        "cs.RO"
+      ],
+      "hit_dimensions": [
+        "resources"
+      ],
+      "date_found": "2026-11-16",
+      "review_status": "pending",
+      "review_changed_at": "2026-11-16T02:14:17.001966+00:00"
+    },
+    {
+      "id": "2611.17682",
+      "version": "v1",
+      "title": "Agent-written heuristics versus commercial solvers on unsolved job-shop benchmark instances",
+      "abstract": "Commercial solvers are the standard tool for difficult scheduling problems. We study whether a frontier large language model, used as a coding agent with open-source tools only, can match them in quality and speed. We report every run, and independent checkers verify every schedule. On the 100,000-operation job shop tai_100_1000_1, an agent-written solver reached 525,515, below OptalCP, Hexaly, and CP Optimizer. Unchanged, it improved all ten instances of the family and closed two. With equal budgets on the same workstation, it ended 0.0-1.8% above the lower bound, against 2.6-5.8% for CP Optimizer and 2.4-4.4% for Hexaly. On the Behnke-Geiger flexible job shops, an agent-written tabu search improved 11 of 32 open instances. With two transport robots, an agent-written solver improved seven of ten MKT instances. New lower bounds show that four published MKT values cannot be attained on the distributed instance files. Agent-run improvement campaigns closed eight further instances.",
+      "authors": [
+        "Andre Albrecht",
+        "Enzo Morosini Frazzon",
+        "Leandro C. Coelho",
+        "Bruno Vieira"
+      ],
+      "date": "2026-11-13",
+      "updated": "2026-11-13T02:50:02Z",
+      "url": "https://arxiv.org/abs/2611.17682v1",
+      "source": "arxiv",
+      "categories": [
+        "math.OC",
+        "cs.AI"
+      ],
+      "hit_dimensions": [
+        "resources"
+      ],
+      "date_found": "2026-11-16",
+      "review_status": "pending",
+      "review_changed_at": "2026-11-16T02:14:17.001966+00:00"
+    },
+    {
+      "id": "2611.17658",
+      "version": "v1",
+      "title": "Imitation Policies Learn a Proprioceptive Anchor: A Predictive Law for Perception Noise and Its Closed Loop Cost",
+      "abstract": "Imitation policies for robot manipulation are often trained on noisy object positions, and they learn to discount the noisy reading. We show how much they discount it, and why. Because demonstrators steer toward the object, the robot's own state carries information about where the object is. A trained policy combines this proprioceptive anchor with the reading and weights the reading by $α= V/(V + s^2)$, where $s^2$ is the reading noise and $V$ the anchor's error variance. $V$ belongs to the learner and is far smaller than a linear model of the demonstrations implies, which is why classical errors-in-variables (EIV) regression overestimates $α$. Measured once, $V$ predicted ten held-out sensitivities across two robomimic tasks, two learners and four new noise levels, with mean absolute error 0.025 against 0.37 for classical EIV, and a parameter-free bias test rules out the simpler explanation that the policies just overestimate the noise. The discount does not carry over to deployment, where the policy produces its own state: closed-loop sensitivity to a persistent reading offset exceeded $α$ in all 15 policies that passed the registered gates, although the stricter registered prediction, that all would follow the offset fully, held for 8 of them. Post hoc, lower $α$ went with lower success, steeply for diffusion, and a registered prospective test confirmed this for diffusion on Can at two new noise levels: the measured $α$ predicted success before any rollout, within 0.03 (95% intervals $\\pm 0.08$), although training noise predicts it equally well. Every test was registered before its data, including the classical benchmark that failed, and all other analyses are labelled post hoc; all results are in simulation with synthetic Gaussian noise.",
+      "authors": [
+        "Christopher Malili"
+      ],
+      "date": "2026-11-13",
+      "updated": "2026-11-13T02:09:51Z",
+      "url": "https://arxiv.org/abs/2611.17658v1",
+      "source": "arxiv",
+      "categories": [
+        "cs.RO",
+        "cs.AI",
+        "cs.LG"
+      ],
+      "hit_dimensions": [
+        "resources"
+      ],
+      "date_found": "2026-11-16",
+      "review_status": "pending",
+      "review_changed_at": "2026-11-16T02:14:17.001966+00:00"
     }
   ]
 }
