@@ -1,37 +1,36 @@
 {
-  "at": "2026-11-16T02:14:17.001966+00:00",
-  "ok": false,
+  "at": "2026-11-17T04:34:45.310774+00:00",
+  "ok": true,
   "sources": {
     "robotics_all": {
-      "status": "error",
-      "error_type": "HTTPStatusError",
-      "since": "2026-11-12T00:00:00+00:00",
-      "http_status": 429
+      "status": "ok",
+      "count": 238,
+      "since": "2026-11-12T00:00:00+00:00"
     },
     "human_data": {
-      "status": "error",
-      "error_type": "ReadTimeout",
+      "status": "ok",
+      "count": 22,
       "since": "2026-11-12T00:00:00+00:00"
     },
     "adaptation": {
       "status": "ok",
-      "count": 8,
-      "since": "2026-11-12T00:00:00+00:00"
+      "count": 14,
+      "since": "2026-11-13T00:00:00+00:00"
     },
     "world_action_models": {
       "status": "ok",
-      "count": 17,
-      "since": "2026-11-12T00:00:00+00:00"
+      "count": 31,
+      "since": "2026-11-13T00:00:00+00:00"
     },
     "deployment": {
       "status": "ok",
-      "count": 23,
-      "since": "2026-11-12T00:00:00+00:00"
+      "count": 28,
+      "since": "2026-11-13T00:00:00+00:00"
     },
     "resources": {
       "status": "ok",
-      "count": 27,
-      "since": "2026-11-12T00:00:00+00:00"
+      "count": 38,
+      "since": "2026-11-13T00:00:00+00:00"
     }
   },
   "backfill": {
@@ -94,7 +93,7 @@
   "announcements": {
     "status": "ok",
     "scope": "arxiv cs.RO recent announcement list",
-    "reference_count": 481,
+    "reference_count": 438,
     "missing_before": 0,
     "recovered": 0,
     "remaining": 0
