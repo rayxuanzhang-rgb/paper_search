@@ -1,36 +1,36 @@
 {
-  "at": "2026-11-20T03:27:50.403138+00:00",
+  "at": "2026-11-21T03:15:38.227703+00:00",
   "ok": true,
   "sources": {
     "robotics_all": {
       "status": "ok",
-      "count": 448,
-      "since": "2026-11-16T00:00:00+00:00"
+      "count": 379,
+      "since": "2026-11-17T00:00:00+00:00"
     },
     "human_data": {
       "status": "ok",
-      "count": 45,
-      "since": "2026-11-16T00:00:00+00:00"
+      "count": 36,
+      "since": "2026-11-17T00:00:00+00:00"
     },
     "adaptation": {
       "status": "ok",
-      "count": 44,
-      "since": "2026-11-16T00:00:00+00:00"
+      "count": 39,
+      "since": "2026-11-17T00:00:00+00:00"
     },
     "world_action_models": {
       "status": "ok",
-      "count": 102,
-      "since": "2026-11-16T00:00:00+00:00"
+      "count": 99,
+      "since": "2026-11-17T00:00:00+00:00"
     },
     "deployment": {
       "status": "ok",
-      "count": 60,
-      "since": "2026-11-16T00:00:00+00:00"
+      "count": 55,
+      "since": "2026-11-17T00:00:00+00:00"
     },
     "resources": {
       "status": "ok",
-      "count": 127,
-      "since": "2026-11-16T00:00:00+00:00"
+      "count": 115,
+      "since": "2026-11-17T00:00:00+00:00"
     }
   },
   "backfill": {
@@ -93,9 +93,9 @@
   "announcements": {
     "status": "ok",
     "scope": "arxiv cs.RO recent announcement list",
-    "reference_count": 471,
-    "missing_before": 1,
-    "recovered": 1,
+    "reference_count": 457,
+    "missing_before": 0,
+    "recovered": 0,
     "remaining": 0
   }
 }
