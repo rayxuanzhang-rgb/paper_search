@@ -1,36 +1,36 @@
 {
-  "at": "2026-11-27T04:18:58.719616+00:00",
+  "at": "2026-11-28T03:58:39.207946+00:00",
   "ok": true,
   "sources": {
     "robotics_all": {
       "status": "ok",
-      "count": 443,
-      "since": "2026-11-23T00:00:00+00:00"
+      "count": 287,
+      "since": "2026-11-24T00:00:00+00:00"
     },
     "human_data": {
       "status": "ok",
-      "count": 47,
-      "since": "2026-11-23T00:00:00+00:00"
+      "count": 35,
+      "since": "2026-11-24T00:00:00+00:00"
     },
     "adaptation": {
       "status": "ok",
-      "count": 78,
-      "since": "2026-11-23T00:00:00+00:00"
+      "count": 52,
+      "since": "2026-11-24T00:00:00+00:00"
     },
     "world_action_models": {
       "status": "ok",
-      "count": 135,
-      "since": "2026-11-23T00:00:00+00:00"
+      "count": 92,
+      "since": "2026-11-24T00:00:00+00:00"
     },
     "deployment": {
       "status": "ok",
-      "count": 71,
-      "since": "2026-11-23T00:00:00+00:00"
+      "count": 43,
+      "since": "2026-11-24T00:00:00+00:00"
     },
     "resources": {
       "status": "ok",
-      "count": 167,
-      "since": "2026-11-23T00:00:00+00:00"
+      "count": 112,
+      "since": "2026-11-24T00:00:00+00:00"
     }
   },
   "backfill": {
